@@ -1,0 +1,140 @@
+'use strict'
+
+const criarDadosHorario = () => {
+
+    const container_horario = document.getElementById('container-horario')
+
+    const container_dados = document.createElement('div')
+    container_dados.classList.add('dados')
+    container_dados.id = 'dados'
+
+    const data = document.createElement('div')
+    data.classList.add('data')
+
+    const date_input = document.createElement('input')
+    date_input.type = 'date'
+    date_input.classList.add('date_input')
+    date_input.id = 'date_input'
+
+    const label_calendar = document.createElement('label')
+    label_calendar.classList.add('fas')
+    label_calendar.classList.add('fa-calendar-alt')
+    label_calendar.for = date_input
+    label_calendar.id = 'label_calendar'
+
+    label_calendar.addEventListener('click', () => {
+        date_input.showPicker();
+    })
+
+    date_input.addEventListener('blur', () => {
+        
+        const myInputCalendarValue = date_input.value;
+        const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
+        console.log(myInputCalendarValue);
+        console.log(myInputCalendarValueBR);
+    })
+
+    const inicio = document.createElement('div')
+    inicio.classList.add('inicio')
+
+    const time_input_inicio = document.createElement('input')
+    time_input_inicio.type = 'time'
+    time_input_inicio.classList.add('time_input_inicio')
+    time_input_inicio.id = 'time_input_inicio'
+
+    const label_time_inicio = document.createElement('label')
+    label_time_inicio.classList.add('fas')
+    label_time_inicio.classList.add('fa-clock')
+    label_time_inicio.classList.add('label_time')
+    label_time_inicio.for = time_input_inicio
+    label_time_inicio.id = 'label_time_inicio'
+
+    label_time_inicio.addEventListener('click', () => {
+        time_input_inicio.showPicker();
+    })
+
+    const termino = document.createElement('div')
+    termino.classList.add('termino')
+
+    const time_input_termino = document.createElement('input')
+    time_input_termino.type = 'time'
+    time_input_termino.classList.add('time_input_termino')
+    time_input_termino.id = 'time_input_termino'
+
+    const label_time_termino = document.createElement('label')
+    label_time_termino.classList.add('fas')
+    label_time_termino.classList.add('fa-clock')
+    label_time_termino.classList.add('label_time')
+    label_time_termino.for = time_input_termino
+    label_time_termino.id = 'label_time_termino'
+
+    label_time_termino.addEventListener('click', () => {
+        time_input_termino.showPicker();
+    })
+
+    const desconto = document.createElement('div')
+    desconto.classList.add('desconto')
+
+    const time_input_desconto = document.createElement('input')
+    time_input_desconto.type = 'time'
+    time_input_desconto.classList.add('time_input_desconto')
+    time_input_desconto.id = 'time_input_desconto'
+
+    const label_time_desconto = document.createElement('label')
+    label_time_desconto.classList.add('fas')
+    label_time_desconto.classList.add('fa-clock')
+    label_time_desconto.classList.add('label_time')
+    label_time_desconto.for = time_input_desconto
+    label_time_desconto.id = 'label_time_termino'
+
+    label_time_desconto.addEventListener('click', () => {
+        time_input_desconto.showPicker();
+    })
+
+
+     const liquido = document.createElement('div')
+     liquido.classList.add('liquido')
+
+     const valor_liquido = document.createElement('i')
+     valor_liquido.textContent = '2h'
+
+     const total_geral = document.createElement('div')
+     total_geral.classList.add('total_geral')
+
+     const valor_total = document.createElement('i')
+     valor_total.textContent = '4h'
+
+     const dados_botoes = document.createElement('div')
+     dados_botoes.classList.add('dados_botoes')
+
+     const button_editar = document.createElement('button')
+     button_editar.classList.add('far')
+     button_editar.classList.add('fa-edit')
+     button_editar.id = 'editar'
+
+     const button_excluir = document.createElement('button')
+     button_excluir.classList.add('far')
+     button_excluir.classList.add('fa-trash')
+     button_excluir.id = 'excluir'
+
+     
+    container_horario.append(container_dados)
+    container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes)
+    data.append(label_calendar, date_input)
+    inicio.append(label_time_inicio, time_input_inicio)
+    termino.append(time_input_termino, label_time_termino)
+    desconto.append(time_input_desconto, label_time_desconto)
+    liquido.append(valor_liquido)
+    total_geral.append(valor_total)
+    dados_botoes.append(button_excluir,button_editar)
+}
+
+export const eventoBotãoAdicionar = () => {
+
+    const botao_adc = document.getElementById('adicionar')
+
+    botao_adc.addEventListener('click', () => {
+        criarDadosHorario()
+    })
+}
+
