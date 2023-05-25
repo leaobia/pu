@@ -26,13 +26,13 @@ const criarDadosHorario = () => {
         date_input.showPicker();
     })
 
-    date_input.addEventListener('blur', () => {
-        
+    date_input.addEventListener('change', () => {
         const myInputCalendarValue = date_input.value;
         const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
         console.log(myInputCalendarValue);
         console.log(myInputCalendarValueBR);
-    })
+    });
+
 
     const inicio = document.createElement('div')
     inicio.classList.add('inicio')
@@ -53,6 +53,11 @@ const criarDadosHorario = () => {
         time_input_inicio.showPicker();
     })
 
+    time_input_inicio.addEventListener('change', () => {
+        const myInputValue = time_input_inicio.value;
+        console.log(myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5));
+    })
+
     const termino = document.createElement('div')
     termino.classList.add('termino')
 
@@ -60,6 +65,11 @@ const criarDadosHorario = () => {
     time_input_termino.type = 'time'
     time_input_termino.classList.add('time_input_termino')
     time_input_termino.id = 'time_input_termino'
+
+    time_input_termino.addEventListener('change', () => {
+        const myInputValue = time_input_termino.value;
+        console.log(myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5));
+    })
 
     const label_time_termino = document.createElement('label')
     label_time_termino.classList.add('fas')
@@ -87,37 +97,42 @@ const criarDadosHorario = () => {
     label_time_desconto.for = time_input_desconto
     label_time_desconto.id = 'label_time_termino'
 
+    time_input_desconto.addEventListener('change', () => {
+        const myInputValue = time_input_desconto.value;
+        console.log(myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5));
+    })
+
     label_time_desconto.addEventListener('click', () => {
         time_input_desconto.showPicker();
     })
 
 
-     const liquido = document.createElement('div')
-     liquido.classList.add('liquido')
+    const liquido = document.createElement('div')
+    liquido.classList.add('liquido')
 
-     const valor_liquido = document.createElement('i')
-     valor_liquido.textContent = '2h'
+    const valor_liquido = document.createElement('i')
+    valor_liquido.textContent = '2h'
 
-     const total_geral = document.createElement('div')
-     total_geral.classList.add('total_geral')
+    const total_geral = document.createElement('div')
+    total_geral.classList.add('total_geral')
 
-     const valor_total = document.createElement('i')
-     valor_total.textContent = '4h'
+    const valor_total = document.createElement('i')
+    valor_total.textContent = '4h'
 
-     const dados_botoes = document.createElement('div')
-     dados_botoes.classList.add('dados_botoes')
+    const dados_botoes = document.createElement('div')
+    dados_botoes.classList.add('dados_botoes')
 
-     const button_editar = document.createElement('button')
-     button_editar.classList.add('far')
-     button_editar.classList.add('fa-edit')
-     button_editar.id = 'editar'
+    const button_editar = document.createElement('button')
+    button_editar.classList.add('far')
+    button_editar.classList.add('fa-edit')
+    button_editar.id = 'editar'
 
-     const button_excluir = document.createElement('button')
-     button_excluir.classList.add('far')
-     button_excluir.classList.add('fa-trash')
-     button_excluir.id = 'excluir'
+    const button_excluir = document.createElement('button')
+    button_excluir.classList.add('far')
+    button_excluir.classList.add('fa-trash')
+    button_excluir.id = 'excluir'
 
-     
+
     container_horario.append(container_dados)
     container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes)
     data.append(label_calendar, date_input)
@@ -126,7 +141,36 @@ const criarDadosHorario = () => {
     desconto.append(time_input_desconto, label_time_desconto)
     liquido.append(valor_liquido)
     total_geral.append(valor_total)
-    dados_botoes.append(button_excluir,button_editar)
+    dados_botoes.append(button_excluir, button_editar)
+
+    const botaosalvar = document.getElementById('salvar')
+    botaosalvar.addEventListener('click', () => {
+        if (time_input_termino.value == null, time_input_termino == "", time_input_inicio == null, time_input_inicio == " ", time_input_termino < time_input_inicio) {
+            console.log('Não foi possivel calcular');
+        } else {
+
+            const hora1 = time_input_inicio.value;
+            const hora2 = time_input_termino.value;
+            const hora3 = time_input_desconto.value;
+            
+            const [hour1, minute1] = hora1.split(":").map(Number);
+            const [hour2, minute2] = hora2.split(":").map(Number);
+            const [hour3, minute3] = hora3.split(":").map(Number);
+            
+            let somaHours = hour2 + hour1 + hour3;
+            let somaMinutes = minute2 + minute1 + minute3;
+            
+            if (somaMinutes >= 60) {
+              somaHours++;
+              somaMinutes -= 60;
+            }
+            
+            console.log(`${somaHours}h${somaMinutes}`);
+
+            const valorTotal = `${somaHours}h${somaMinutes}`
+
+        }
+    })
 }
 
 export const eventoBotãoAdicionar = () => {
@@ -137,4 +181,3 @@ export const eventoBotãoAdicionar = () => {
         criarDadosHorario()
     })
 }
-

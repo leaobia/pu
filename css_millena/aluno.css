@@ -244,6 +244,16 @@ label{
     opacity: 0;
 }
 
+ .termino, .desconto{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.inicio{
+    display: flex;
+    flex-direction: column;
+}
+
 /* .time_input_termino, .time_input_desconto{
     margin-right: 20px;
 } */
