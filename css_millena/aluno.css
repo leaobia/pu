@@ -124,38 +124,6 @@ nav {
     line-height: 2.5rem;
 }
 
-@media (max-width: 999px) {
-
-    /* AREA DO ALUNO */
-    .busca {
-        width: 100%;
-    }
-
-    .cards_turma {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-
-    /* AREA DO ALUNO */
-    .busca a {
-        font-size: 1rem;
-    }
-
-    .container_topo {
-        text-align: center;
-    }
-
-    .container {
-        padding: 5vw 20px;
-    }
-
-    .card {
-        width: 270px;
-        height: 270px;
-    }
-}
 
 
 
@@ -173,7 +141,7 @@ nav {
     border-radius: 50%;
     border: 0;
     cursor: pointer;
-    font-size: 25px;
+    font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
 }
 
 .horarios {
@@ -182,10 +150,10 @@ nav {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
     line-height: 29px;
     color: rgba(0, 0, 0, 0.5);
-    padding-top: 67px;
+    padding: 1% 0% 1% 0%;
     border-bottom: 2px solid rgba(48, 132, 180, 0.5);
 }
 
@@ -209,7 +177,7 @@ nav {
     flex-direction: column;
 }
 
-.inicio {
+/* .inicio {
     padding-left: 10vw;
 }
 
@@ -227,7 +195,9 @@ nav {
 
 .total_geral {
     padding-left: 15vw;
-}
+} */
+
+
 
 #label_calendar{
     z-index: 1;
@@ -251,14 +221,22 @@ label{
 
  .termino, .desconto{
     display: flex;
-    gap: 15%;
+    flex-direction: column;
+    align-items: center;
+    font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
 }
 
 .inicio{
     display: flex;
-    gap:15%;
+    flex-direction: column;
+    align-items: center;
+    font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
 }
-
+.dados{
+    display: flex;
+    justify-content: space-between;
+    font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
+}
 /* .time_input_termino, .time_input_desconto{
     margin-right: 20px;
 } */
@@ -268,7 +246,7 @@ label{
 
 .data{
     display: flex;
-    gap: 10px;
+    align-items: center;
 }
 
 .dados:hover .dados_botoes{
@@ -292,5 +270,40 @@ label{
         border-radius: 50%;
         border: 0;
         cursor: pointer;
-        font-size: 25px;
+        font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
+}
+
+
+@media (max-width: 999px) {
+
+    /* AREA DO ALUNO */
+    .busca {
+        width: 100%;
+    }
+
+    .cards_turma {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
+@media (max-width: 640px) {
+
+    /* AREA DO ALUNO */
+    .busca a {
+        font-size: 1rem;
+    }
+
+    .container_topo {
+        text-align: center;
+    }
+
+    .container {
+        padding: 5vw 20px;
+    }
+
+    .card {
+        width: 270px;
+        height: 270px;
+    }
 }
