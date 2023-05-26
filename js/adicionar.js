@@ -157,6 +157,7 @@ const criarDadosHorario = () => {
     total_geral.append(valor_total)
     dados_botoes.append(button_excluir, button_editar)
 
+
     const botaosalvar = document.getElementById('salvar')
     botaosalvar.addEventListener('click', () => {
         if (time_input_termino.value == null, time_input_termino == "", time_input_inicio == null, time_input_inicio == " ", time_input_termino < time_input_inicio) {
@@ -186,6 +187,7 @@ const criarDadosHorario = () => {
 
             const valorTotal = `${somaHours}h${somaMinutes}`
             const valorTotalLiquid = `${somaHoursLiquid}h${somaMinutesLiquid}`
+            
 
             if(valorTotal == '0hNaN'|| valorTotalLiquid == '0hNaN'){
                 console.log('Ainda nnn');
@@ -204,7 +206,12 @@ export const eventoBotãoAdicionar = () => {
 
     const botao_adc = document.getElementById('adicionar')
 
+
+
     botao_adc.addEventListener('click', () => {
+        const btc_save = document.getElementById('salvar')
+        btc_save.classList.add('d-flex')
+        btc_save.classList.remove('d-none')
         criarDadosHorario()
     })
 }

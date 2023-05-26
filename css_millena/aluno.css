@@ -134,6 +134,11 @@ nav {
     justify-content: space-between;
 }
 
+.adicionar_editar_deletar{
+    display: flex;
+    gap: 2%;
+}
+
 .adicionar_editar_deletar button {
     color: white;
     background-color: #3084B4;
@@ -253,6 +258,13 @@ label{
     display: flex;
 }
 
+.d-none{
+    display: none;
+}
+
+.d-flex{
+    display: flex;
+}
 
 .dados_botoes{
    
