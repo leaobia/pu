@@ -11,10 +11,15 @@ const criarDadosHorario = () => {
     const data = document.createElement('div')
     data.classList.add('data')
 
+    const valorData = document.createElement('i')
+ 
+
     const date_input = document.createElement('input')
     date_input.type = 'date'
     date_input.classList.add('date_input')
     date_input.id = 'date_input'
+
+
 
     const label_calendar = document.createElement('label')
     label_calendar.classList.add('fas')
@@ -29,6 +34,7 @@ const criarDadosHorario = () => {
     date_input.addEventListener('change', () => {
         const myInputCalendarValue = date_input.value;
         const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
+        valorData.textContent = myInputCalendarValueBR
         console.log(myInputCalendarValue);
         console.log(myInputCalendarValueBR);
     });
@@ -36,6 +42,8 @@ const criarDadosHorario = () => {
 
     const inicio = document.createElement('div')
     inicio.classList.add('inicio')
+
+    const valorInicio = document.createElement('i')
 
     const time_input_inicio = document.createElement('input')
     time_input_inicio.type = 'time'
@@ -55,6 +63,7 @@ const criarDadosHorario = () => {
 
     time_input_inicio.addEventListener('change', () => {
         const myInputValue = time_input_inicio.value;
+        valorInicio.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
         console.log(myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5));
     })
 
@@ -66,9 +75,12 @@ const criarDadosHorario = () => {
     time_input_termino.classList.add('time_input_termino')
     time_input_termino.id = 'time_input_termino'
 
+
+    const valorTermino = document.createElement('i')
+
     time_input_termino.addEventListener('change', () => {
         const myInputValue = time_input_termino.value;
-        console.log(myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5));
+        valorTermino.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
 
     const label_time_termino = document.createElement('label')
@@ -85,6 +97,8 @@ const criarDadosHorario = () => {
     const desconto = document.createElement('div')
     desconto.classList.add('desconto')
 
+    const valorDesconto = document.createElement('i')
+
     const time_input_desconto = document.createElement('input')
     time_input_desconto.type = 'time'
     time_input_desconto.classList.add('time_input_desconto')
@@ -99,7 +113,7 @@ const criarDadosHorario = () => {
 
     time_input_desconto.addEventListener('change', () => {
         const myInputValue = time_input_desconto.value;
-        console.log(myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5));
+        valorDesconto.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
 
     label_time_desconto.addEventListener('click', () => {
@@ -111,13 +125,13 @@ const criarDadosHorario = () => {
     liquido.classList.add('liquido')
 
     const valor_liquido = document.createElement('i')
-    valor_liquido.textContent = '2h'
+    valor_liquido.textContent = '00h00'
 
     const total_geral = document.createElement('div')
     total_geral.classList.add('total_geral')
 
     const valor_total = document.createElement('i')
-    valor_total.textContent = '4h'
+    valor_total.textContent = '00h00'
 
     const dados_botoes = document.createElement('div')
     dados_botoes.classList.add('dados_botoes')
@@ -135,10 +149,10 @@ const criarDadosHorario = () => {
 
     container_horario.append(container_dados)
     container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes)
-    data.append(label_calendar, date_input)
-    inicio.append(label_time_inicio, time_input_inicio)
-    termino.append(time_input_termino, label_time_termino)
-    desconto.append(time_input_desconto, label_time_desconto)
+    data.append(label_calendar, date_input, valorData)
+    inicio.append(label_time_inicio, time_input_inicio, valorInicio)
+    termino.append(time_input_termino, label_time_termino, valorTermino)
+    desconto.append(time_input_desconto, label_time_desconto, valorDesconto)
     liquido.append(valor_liquido)
     total_geral.append(valor_total)
     dados_botoes.append(button_excluir, button_editar)
@@ -157,8 +171,11 @@ const criarDadosHorario = () => {
             const [hour2, minute2] = hora2.split(":").map(Number);
             const [hour3, minute3] = hora3.split(":").map(Number);
             
-            let somaHours = hour2 + hour1 + hour3;
-            let somaMinutes = minute2 + minute1 + minute3;
+            let somaHours = (hour2 - hour1) + hour3;
+            let somaMinutes = (minute2 - minute1) + minute3;
+
+            let somaHoursLiquid = (hour2 - hour1);
+            let somaMinutesLiquid = (minute2 - minute1);
             
             if (somaMinutes >= 60) {
               somaHours++;
@@ -168,6 +185,16 @@ const criarDadosHorario = () => {
             console.log(`${somaHours}h${somaMinutes}`);
 
             const valorTotal = `${somaHours}h${somaMinutes}`
+            const valorTotalLiquid = `${somaHoursLiquid}h${somaMinutesLiquid}`
+
+            if(valorTotal == '0hNaN'|| valorTotalLiquid == '0hNaN'){
+                console.log('Ainda nnn');
+                
+            }else{
+                valor_total.textContent = valorTotal.replace('-','0')
+
+                valor_liquido.textContent = valorTotalLiquid.replace('-','0')
+            }
 
         }
     })

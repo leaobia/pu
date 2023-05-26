@@ -238,20 +238,25 @@ label{
 
 .date_input{
     opacity: 0;
+    width: 0px;
+    height: 0px;
 }
+
 
 .time_input_inicio, .time_input_termino, .time_input_desconto{
     opacity: 0;
+    width: 0px;
+    height: 0px;
 }
 
  .termino, .desconto{
     display: flex;
-    flex-direction: column-reverse;
+    gap: 15%;
 }
 
 .inicio{
     display: flex;
-    flex-direction: column;
+    gap:15%;
 }
 
 /* .time_input_termino, .time_input_desconto{
@@ -261,10 +266,23 @@ label{
     background-color: #ffff;
 }
 
-.dados_botoes{
-    margin-left: 2%;
+.data{
     display: flex;
+    gap: 10px;
+}
+
+.dados:hover .dados_botoes{
+    display: flex;
+}
+
+
+.dados_botoes{
+   
+    display: none;
     gap: 4px;
+    position: absolute;
+    float: left;
+    right: 0;
 }
 
 .dados_botoes button{
