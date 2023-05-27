@@ -12,13 +12,13 @@ const criarDadosHorario = () => {
     data.classList.add('data')
 
     const valorData = document.createElement('i')
- 
+
 
     const date_input = document.createElement('input')
     date_input.type = 'date'
     date_input.classList.add('date_input')
     date_input.id = 'date_input'
-
+    date_input.classList.add('check_input')
 
 
     const label_calendar = document.createElement('label')
@@ -49,6 +49,7 @@ const criarDadosHorario = () => {
     time_input_inicio.type = 'time'
     time_input_inicio.classList.add('time_input_inicio')
     time_input_inicio.id = 'time_input_inicio'
+    time_input_inicio.classList.add('check_input')
 
     const label_time_inicio = document.createElement('label')
     label_time_inicio.classList.add('fas')
@@ -73,6 +74,7 @@ const criarDadosHorario = () => {
     const time_input_termino = document.createElement('input')
     time_input_termino.type = 'time'
     time_input_termino.classList.add('time_input_termino')
+    time_input_termino.classList.add('check_input')
     time_input_termino.id = 'time_input_termino'
 
 
@@ -103,6 +105,8 @@ const criarDadosHorario = () => {
     time_input_desconto.type = 'time'
     time_input_desconto.classList.add('time_input_desconto')
     time_input_desconto.id = 'time_input_desconto'
+    time_input_desconto.classList.add('check_input')
+    time_input_desconto.value = '00:15'
 
     const label_time_desconto = document.createElement('label')
     label_time_desconto.classList.add('fas')
@@ -151,15 +155,46 @@ const criarDadosHorario = () => {
     container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes)
     data.append(label_calendar, date_input, valorData)
     inicio.append(label_time_inicio, time_input_inicio, valorInicio)
-    termino.append(label_time_termino , time_input_termino, valorTermino)
-    desconto.append( label_time_desconto,time_input_desconto, valorDesconto)
+    termino.append(label_time_termino, time_input_termino, valorTermino)
+    desconto.append(label_time_desconto, time_input_desconto, valorDesconto)
     liquido.append(valor_liquido)
     total_geral.append(valor_total)
     dados_botoes.append(button_excluir, button_editar)
 
 
-    const botaosalvar = document.getElementById('salvar')
-    botaosalvar.addEventListener('click', () => {
+
+    const inputs = document.querySelectorAll('.check_input');
+    let inputsAlterados = Array.from(inputs).fill(false); //
+    console.log(inputsAlterados);
+
+    const btc_save = document.getElementById('salvar')
+
+    const habilitarBotaoSalvar = () => {
+        const todosAlterados = inputsAlterados.every((alterado) => alterado);
+        if (todosAlterados) {
+            btc_save.classList.add('d-flex');
+            btc_save.classList.remove('d-none');
+        }
+    };
+
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+            inputsAlterados[index] = true;
+            habilitarBotaoSalvar();
+        });
+    });
+
+    //   const desabilitarInputs = () => {
+    //     inputs.forEach((input) => {
+    //       input.disabled = true;
+    //     });
+    //   };
+
+
+
+
+    btc_save.addEventListener('click', () => {
+        // desabilitarInputs()
         if (time_input_termino.value == null, time_input_termino == "", time_input_inicio == null, time_input_inicio == " ", time_input_termino < time_input_inicio) {
             console.log('Não foi possivel calcular');
         } else {
@@ -167,39 +202,49 @@ const criarDadosHorario = () => {
             const hora1 = time_input_inicio.value;
             const hora2 = time_input_termino.value;
             const hora3 = time_input_desconto.value;
-            
+
             const [hour1, minute1] = hora1.split(":").map(Number);
             const [hour2, minute2] = hora2.split(":").map(Number);
             const [hour3, minute3] = hora3.split(":").map(Number);
-            
+
             let somaHours = (hour2 - hour1) + hour3;
             let somaMinutes = (minute2 - minute1) + minute3;
 
             let somaHoursLiquid = (hour2 - hour1);
             let somaMinutesLiquid = (minute2 - minute1);
-            
+
             if (somaMinutes >= 60) {
-              somaHours++;
-              somaMinutes -= 60;
+                somaHours++;
+                somaMinutes -= 60;
             }
-            
+
             console.log(`${somaHours}h${somaMinutes}`);
 
             const valorTotal = `${somaHours}h${somaMinutes}`
             const valorTotalLiquid = `${somaHoursLiquid}h${somaMinutesLiquid}`
-            
 
-            if(valorTotal == '0hNaN'|| valorTotalLiquid == '0hNaN'){
+
+            if (valorTotal == '0hNaN' || valorTotalLiquid == '0hNaN') {
                 console.log('Ainda nnn');
-                
-            }else{
-                valor_total.textContent = valorTotal.replace('-','0')
 
-                valor_liquido.textContent = valorTotalLiquid.replace('-','0')
+            } else {
+                valor_total.textContent = valorTotal.replace('-', '0')
+
+                valor_liquido.textContent = valorTotalLiquid.replace('-', '0')
             }
 
+            const btc_save = document.getElementById('salvar')
+            btc_save.classList.add('d-none')
+            btc_save.classList.remove('d-flex')
+
         }
+        //inputsAlterados[index].classList.add('alterado')
     })
+
+    button_excluir.addEventListener('click', () => {
+        container_dados.classList.add('d-none')
+    })
+
 }
 
 export const eventoBotãoAdicionar = () => {
@@ -210,8 +255,8 @@ export const eventoBotãoAdicionar = () => {
 
     botao_adc.addEventListener('click', () => {
         const btc_save = document.getElementById('salvar')
-        btc_save.classList.add('d-flex')
-        btc_save.classList.remove('d-none')
+        btc_save.classList.add('d-none')
+        btc_save.classList.remove('d-flex')
         criarDadosHorario()
     })
 }
