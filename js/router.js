@@ -1,6 +1,5 @@
 'use strict'
 
-import {getValuesOfInputTimeDate} from'./horario.js'
 import {eventoBotãoAdicionar} from'./adicionar.js'
 
 const routes = {

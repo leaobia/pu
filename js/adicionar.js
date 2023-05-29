@@ -106,7 +106,7 @@ const criarDadosHorario = () => {
     time_input_desconto.classList.add('time_input_desconto')
     time_input_desconto.id = 'time_input_desconto'
     time_input_desconto.classList.add('check_input')
-    time_input_desconto.value = '00:15'
+    time_input_desconto.value = '01:14'
 
     const label_time_desconto = document.createElement('label')
     label_time_desconto.classList.add('fas')
