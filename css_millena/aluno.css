@@ -212,16 +212,16 @@ label{
 }
 
 .date_input{
-    opacity: 1;
-    /* width: 30px;
-    height:30px; */
+    opacity: 0;
+    width: 30px;
+    height:30px;
 }
 
 
 .time_input_inicio, .time_input_termino, .time_input_desconto{
-    opacity: 1;
-    /* width: 30px;
-    height: 30px; */
+    opacity: 0;
+    width: 30px;
+    height: 30px;
 }
 
  .termino, .desconto{
