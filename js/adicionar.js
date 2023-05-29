@@ -2,9 +2,9 @@
 
 const criarDadosHorario = () => {
 
-    const container_horario = document.getElementById('container-horario')
+    const container_horario = document.getElementById('teste')
 
-    const container_dados = document.createElement('form')
+    const container_dados = document.createElement('div')
     container_dados.classList.add('dados')
     container_dados.id = 'dados'
 
@@ -192,28 +192,22 @@ const criarDadosHorario = () => {
 
 
     const btc_save = document.getElementById('salvar')
+
     const inputs = document.querySelectorAll('.check_input');
-    console.log(inputs);
-    
 
-    inputs.forEach((input) => {
+     inputs.forEach((input) => {
         input.addEventListener('input', () => {
-            const form = document.querySelectorAll('.dados')
+             
+            console.log(container_horario);
+            if(container_horario.checkValidity()){
+                btc_save.classList.add('d-flex');
+                btc_save.classList.remove('d-none');
+            }else{
+                console.log('Não foi possível salvar os dados, por conta de não ser preenchido todos os inputs');
+            }
 
-            form.forEach((dadoContainer) => {
-                if(dadoContainer.checkValidity()){
-                    btc_save.classList.add('d-flex');
-                    btc_save.classList.remove('d-none');
-                    console.log(dadoContainer.checkValidity());
-                }else{
-                    console.log('Não foi possível salvar os dados, por conta de não ser preenchido todos os inputs');
-                    console.log(dadoContainer.checkValidity());
-                }
-            })
-            
-
-        });
-    });
+         });
+     });
 
 
 
