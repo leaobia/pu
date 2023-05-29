@@ -229,11 +229,11 @@ const criarDadosHorario = () => {
             const [hour2, minute2] = hora2.split(":").map(Number);
             const [hour3, minute3] = hora3.split(":").map(Number);
 
-            let somaHours = (hour2 - hour1) + hour3;
-            let somaMinutes = (minute2 - minute1) + minute3;
+            let somaHours = (hour2 - hour1);
+            let somaMinutes = (minute2 - minute1);
 
-            let somaHoursLiquid = (hour2 - hour1);
-            let somaMinutesLiquid = (minute2 - minute1);
+            let somaHoursLiquid = (hour2 - hour1 - hour3);
+            let somaMinutesLiquid = (minute2 - minute1 - minute3);
 
             if (somaMinutes >= 60) {
                 somaHours++;
