@@ -261,11 +261,21 @@ const criarDadosHorario = () => {
 
         }
 
+        const botao_adc = document.getElementById('adicionar')
+        botao_adc.classList.add('d-flex')
+        botao_adc.classList.remove('d-none')
+
     })
 
     button_excluir.addEventListener('click', () => {
         container_dados.classList.add('d-none')
+    }
+    )
+    button_editar.addEventListener('click', () => {
+        alert('editar')
     })
+
+
 
 }
 
@@ -279,6 +289,9 @@ export const eventoBotãoAdicionar = () => {
         const btc_save = document.getElementById('salvar')
         btc_save.classList.add('d-none')
         btc_save.classList.remove('d-flex')
+
+        botao_adc.classList.add('d-none')
+        botao_adc.classList.remove('d-flex')
         criarDadosHorario()
     })
 }
