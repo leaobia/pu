@@ -26,7 +26,7 @@ const criarDadosHorario = () => {
     label_calendar.classList.add('fas')
     label_calendar.classList.add('fa-calendar-alt')
     label_calendar.for = date_input
-   // label_calendar.id = 'label_calendar'
+    // label_calendar.id = 'label_calendar'
 
 
 
@@ -38,7 +38,7 @@ const criarDadosHorario = () => {
     const time_input_inicio = document.createElement('input')
     time_input_inicio.type = 'time'
     time_input_inicio.classList.add('time_input_inicio')
-   // time_input_inicio.id = 'time_input_inicio'
+    // time_input_inicio.id = 'time_input_inicio'
     time_input_inicio.classList.add('check_input')
     time_input_inicio.required = true
 
@@ -47,7 +47,7 @@ const criarDadosHorario = () => {
     label_time_inicio.classList.add('fa-clock')
     label_time_inicio.classList.add('label_time')
     label_time_inicio.for = time_input_inicio
-   // label_time_inicio.id = 'label_time_inicio'
+    // label_time_inicio.id = 'label_time_inicio'
 
 
 
@@ -124,7 +124,7 @@ const criarDadosHorario = () => {
 
     // click e change
 
-    
+
     label_calendar.addEventListener('click', () => {
         date_input.showPicker();
     })
@@ -134,7 +134,7 @@ const criarDadosHorario = () => {
         time_input_desconto.showPicker();
     })
 
-    
+
     label_time_inicio.addEventListener('click', () => {
         time_input_inicio.showPicker();
     })
@@ -150,7 +150,7 @@ const criarDadosHorario = () => {
         const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
         valorData.textContent = myInputCalendarValueBR
         //console.log(myInputCalendarValue);
-       // console.log(myInputCalendarValueBR);
+        // console.log(myInputCalendarValueBR);
     });
 
     time_input_termino.addEventListener('change', () => {
@@ -171,7 +171,7 @@ const criarDadosHorario = () => {
         const myInputValue = time_input_desconto.value;
 
         const formatoBack = myInputValue + ':00'
-        
+
         valorDesconto.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
 
@@ -195,19 +195,19 @@ const criarDadosHorario = () => {
 
     const inputs = document.querySelectorAll('.check_input');
 
-     inputs.forEach((input) => {
+    inputs.forEach((input) => {
         input.addEventListener('input', () => {
-             
+
             console.log(container_horario);
-            if(container_horario.checkValidity()){
+            if (container_horario.checkValidity()) {
                 btc_save.classList.add('d-flex');
                 btc_save.classList.remove('d-none');
-            }else{
+            } else {
                 console.log('Não foi possível salvar os dados, por conta de não ser preenchido todos os inputs');
             }
 
-         });
-     });
+        });
+    });
 
 
 
@@ -216,7 +216,7 @@ const criarDadosHorario = () => {
 
 
     btc_save.addEventListener('click', () => {
-    
+
         if (time_input_termino.value == null, time_input_termino == "", time_input_inicio == null, time_input_inicio == " ", time_input_termino < time_input_inicio) {
             console.log('Não foi possivel calcular');
         } else {
@@ -265,7 +265,14 @@ const criarDadosHorario = () => {
         botao_adc.classList.add('d-flex')
         botao_adc.classList.remove('d-none')
 
+        time_input_termino.disabled = true;
+        time_input_inicio.disabled = true;
+        time_input_desconto.disabled = true;
+        date_input.disabled = true;
+
     })
+
+
 
     button_excluir.addEventListener('click', () => {
         container_dados.classList.add('d-none')
