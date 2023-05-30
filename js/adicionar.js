@@ -122,6 +122,21 @@ const criarDadosHorario = () => {
     button_excluir.id = 'excluir'
 
 
+    const modalEditar = document.createElement('div')
+    modalEditar.classList.add('d-none')
+    modalEditar.classList.add('modal')
+
+    const modalEditarContent = document.createElement('div')
+    modalEditar.classList.add('modalContent')
+
+    const btnBack = document.createElement('button')
+    btnBack.classList.add('buttonBack')
+    
+    const iconeBack = document.createElement('i')
+    iconeBack.classList.add('fa-solid')
+    iconeBack.classList.add('fa-right-from-bracket')
+
+
     // click e change
 
 
@@ -178,10 +193,14 @@ const criarDadosHorario = () => {
 
 
 
+
     // colocando no pai
 
     container_horario.append(container_dados)
-    container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes)
+    container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes, modalEditar)
+    modalEditar.append(modalEditarContent)
+    modalEditarContent.append(btnBack)
+    btnBack.append(iconeBack)
     data.append(label_calendar, date_input, valorData)
     inicio.append(label_time_inicio, time_input_inicio, valorInicio)
     termino.append(label_time_termino, time_input_termino, valorTermino)
@@ -279,7 +298,15 @@ const criarDadosHorario = () => {
     }
     )
     button_editar.addEventListener('click', () => {
-        alert('editar')
+        //alert('editar' + time_input_desconto.value)
+        modalEditar.classList.add('d-flex')
+        modalEditar.classList.remove('d-none')
+    })
+
+    btnBack.addEventListener('click', () => {
+        //alert('editar' + time_input_desconto.value)
+        modalEditar.classList.remove('d-flex')
+        modalEditar.classList.add('d-none')
     })
 
 
