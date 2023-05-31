@@ -132,14 +132,15 @@ const criarDadosHorario = () => {
 
     const btnBack = document.createElement('button')
     btnBack.classList.add('buttonBack')
-    
+
     const iconeBack = document.createElement('i')
     iconeBack.classList.add('fa-solid')
     iconeBack.classList.add('fa-right-from-bracket')
 
     const btnSave2 = document.createElement('button')
     btnSave2.classList.add('botaoEditarSave')
-    
+    btnSave2.classList.add('d-none')
+
     const textSave = document.createElement('i')
     textSave.textContent = 'Save'
 
@@ -212,6 +213,7 @@ const criarDadosHorario = () => {
 
     date_input.addEventListener('change', () => {
         const myInputCalendarValue = date_input.value;
+        console.log(myInputCalendarValue);
         date_input_edit.value = myInputCalendarValue
         const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
         valorData.textContent = myInputCalendarValueBR
@@ -221,6 +223,7 @@ const criarDadosHorario = () => {
 
     time_input_termino.addEventListener('change', () => {
         const myInputValue = time_input_termino.value;
+        console.log(myInputValue);
         time_input_termino_edit.value = myInputValue;
         valorTermino.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
@@ -243,16 +246,41 @@ const criarDadosHorario = () => {
         valorDesconto.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
 
+    const inputsEdit = [date_input_edit, time_input_termino_edit, time_input_inicio_edit, time_input_desconto_edit];
+    const inputsVerdadeiros = [date_input, time_input_termino, time_input_inicio, time_input_desconto]
+
+    inputsEdit.forEach((input, index) => {
+        input.addEventListener('change', () => {
+
+            console.log(input);
+            btnSave2.classList.remove('d-none');
+            btnSave2.classList.add('d-flex');
+
+            btnSave2.addEventListener('click', (event) => {
+                event.preventDefault();
+                console.log('clique aconteceu');
+                const newValue = input.value;
+                inputsVerdadeiros[index].value = newValue;
+                const changeEvent = new Event('change');
+                inputsVerdadeiros[index].dispatchEvent(changeEvent);
+
+                modalEditar.classList.remove('d-flex')
+                modalEditar.classList.add('d-none')
+            })
+        });
+    });
 
 
-    date_input_edit, time_input_inicio_edit,time_input_termino_edit, time_input_desconto_edit
+
+
+
 
     // colocando no pai
 
     container_horario.append(container_dados)
     container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes, modalEditar)
     modalEditar.append(modalEditarContent)
-    modalEditarContent.append(btnBack,  editH2, formEditar, btnSave2,)
+    modalEditarContent.append(btnBack, editH2, formEditar, btnSave2,)
     btnBack.append(iconeBack)
     btnSave2.append(textSave)
 
@@ -344,13 +372,13 @@ const criarDadosHorario = () => {
         container_dados.addEventListener('mouseenter', () => {
             dados_botoes.classList.add('d-flex');
             dados_botoes.classList.remove('d-none');
-          });
-          
-          container_dados.addEventListener('mouseleave', () => {
+        });
+
+        container_dados.addEventListener('mouseleave', () => {
             dados_botoes.classList.remove('d-flex');
             dados_botoes.classList.add('d-none');
-          });
-          
+        });
+
 
         const botao_adc = document.getElementById('adicionar')
         botao_adc.classList.add('d-flex')
@@ -368,26 +396,26 @@ const criarDadosHorario = () => {
             modalEditar.classList.remove('d-none')
         })
 
-        
-    button_excluir.addEventListener('click', (event) => {
-        event.preventDefault();
-        container_dados.classList.add('d-none')
-    }
-    )
-    
+
+        button_excluir.addEventListener('click', (event) => {
+            event.preventDefault();
+            container_dados.classList.add('d-none')
+        }
+        )
+
         btnBack.addEventListener('click', (event) => {
             event.preventDefault();
             //alert('editar' + time_input_desconto.value)
             modalEditar.classList.remove('d-flex')
             modalEditar.classList.add('d-none')
         })
-    
+
 
     })
 
 
 
-    
+
 
 
 }
