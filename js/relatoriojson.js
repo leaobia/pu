@@ -1,4 +1,4 @@
-const criterioJSON = {
+export const criterioJSON = {
     criterios: [
       {
         descricao: "Descricao de um criterio para ser avaliado",

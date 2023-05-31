@@ -1,6 +1,7 @@
 'use strict'
 
 import {eventoBotãoAdicionar} from'./adicionar.js'
+import {criterioForEach} from'./relatorio.js'
 
 const routes = {
     '/materia' : {
@@ -39,6 +40,9 @@ const route = async() => {
 
     if(window.location.pathname == '/horario'){
         eventoBotãoAdicionar()
+    }
+    if(window.location.pathname == '/relatorio'){
+        criterioForEach()
     }
 }
 
