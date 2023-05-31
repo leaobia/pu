@@ -213,7 +213,6 @@ const criarDadosHorario = () => {
 
     date_input.addEventListener('change', () => {
         const myInputCalendarValue = date_input.value;
-        console.log(myInputCalendarValue);
         date_input_edit.value = myInputCalendarValue
         const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
         valorData.textContent = myInputCalendarValueBR
@@ -223,7 +222,6 @@ const criarDadosHorario = () => {
 
     time_input_termino.addEventListener('change', () => {
         const myInputValue = time_input_termino.value;
-        console.log(myInputValue);
         time_input_termino_edit.value = myInputValue;
         valorTermino.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
@@ -252,13 +250,12 @@ const criarDadosHorario = () => {
     inputsEdit.forEach((input, index) => {
         input.addEventListener('change', () => {
 
-            console.log(input);
             btnSave2.classList.remove('d-none');
             btnSave2.classList.add('d-flex');
 
             btnSave2.addEventListener('click', (event) => {
                 event.preventDefault();
-                console.log('clique aconteceu');
+
                 const newValue = input.value;
                 inputsVerdadeiros[index].value = newValue;
                 const changeEvent = new Event('change');
@@ -310,12 +307,9 @@ const criarDadosHorario = () => {
     inputs.forEach((input) => {
         input.addEventListener('input', () => {
 
-            console.log(container_horario);
             if (container_horario.checkValidity()) {
                 btc_save.classList.add('d-flex');
                 btc_save.classList.remove('d-none');
-            } else {
-                console.log('Não foi possível salvar os dados, por conta de não ser preenchido todos os inputs');
             }
 
         });
