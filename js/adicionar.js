@@ -264,6 +264,10 @@ const criarDadosHorario = () => {
                 const changeEvent = new Event('change');
                 inputsVerdadeiros[index].dispatchEvent(changeEvent);
 
+                const btc_save = document.getElementById('salvar')
+
+                btc_save.click()
+
                 modalEditar.classList.remove('d-flex')
                 modalEditar.classList.add('d-none')
             })
@@ -340,13 +344,22 @@ const criarDadosHorario = () => {
             let somaHours = (hour2 - hour1);
             let somaMinutes = (minute2 - minute1);
 
-            let somaHoursLiquid = (hour2 - hour1 - hour3);
-            let somaMinutesLiquid = (minute2 - minute1 - minute3);
+            let somaHoursLiquid = somaHours  - hour3;
+            let somaMinutesLiquid = somaMinutes - minute3;
 
             if (somaMinutes >= 60) {
                 somaHours++;
                 somaMinutes -= 60;
             }
+   
+            if (somaMinutesLiquid < 0) {
+                somaHoursLiquid--;
+                somaMinutesLiquid += 60;
+              }
+              
+              if (somaHoursLiquid < 0) {
+                somaHoursLiquid += 24;
+              }
 
             //console.log(`${somaHours}h${somaMinutes}`);
 
