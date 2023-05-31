@@ -297,13 +297,15 @@ const criarDadosHorario = () => {
         container_dados.classList.add('d-none')
     }
     )
-    button_editar.addEventListener('click', () => {
+    button_editar.addEventListener('click', (event) => {
+        event.preventDefault();
         //alert('editar' + time_input_desconto.value)
         modalEditar.classList.add('d-flex')
         modalEditar.classList.remove('d-none')
     })
 
-    btnBack.addEventListener('click', () => {
+    btnBack.addEventListener('click', (event) => {
+        event.preventDefault();
         //alert('editar' + time_input_desconto.value)
         modalEditar.classList.remove('d-flex')
         modalEditar.classList.add('d-none')
