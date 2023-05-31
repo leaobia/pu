@@ -110,6 +110,7 @@ const criarDadosHorario = () => {
 
     const dados_botoes = document.createElement('div')
     dados_botoes.classList.add('dados_botoes')
+    dados_botoes.classList.add('d-none')
 
     const button_editar = document.createElement('button')
     button_editar.classList.add('far')
@@ -293,6 +294,17 @@ const criarDadosHorario = () => {
 
         }
 
+        container_dados.addEventListener('mouseenter', () => {
+            dados_botoes.classList.add('d-flex');
+            dados_botoes.classList.remove('d-none');
+          });
+          
+          container_dados.addEventListener('mouseleave', () => {
+            dados_botoes.classList.remove('d-flex');
+            dados_botoes.classList.add('d-none');
+          });
+          
+
         const botao_adc = document.getElementById('adicionar')
         botao_adc.classList.add('d-flex')
         botao_adc.classList.remove('d-none')
@@ -308,6 +320,13 @@ const criarDadosHorario = () => {
             modalEditar.classList.add('d-flex')
             modalEditar.classList.remove('d-none')
         })
+
+        
+    button_excluir.addEventListener('click', (event) => {
+        event.preventDefault();
+        container_dados.classList.add('d-none')
+    }
+    )
     
         btnBack.addEventListener('click', (event) => {
             event.preventDefault();
@@ -321,10 +340,6 @@ const criarDadosHorario = () => {
 
 
 
-    button_excluir.addEventListener('click', () => {
-        container_dados.classList.add('d-none')
-    }
-    )
     
 
 

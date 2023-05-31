@@ -254,9 +254,7 @@ label{
     align-items: center;
 }
 
-.dados:hover .dados_botoes{
-    display: flex;
-}
+
 
 .d-none{
     display: none;
@@ -267,8 +265,7 @@ label{
 }
 
 .dados_botoes{
-   
-    display: none;
+
     gap: 4px;
     position: absolute;
     float: left;
