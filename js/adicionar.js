@@ -141,6 +141,12 @@ const criarDadosHorario = () => {
     editH2.textContent = 'Área de edição'
     editH2.classList.add('editH2')
 
+    const formEditar = document.createElement('form')
+
+    const date_input_edit = document.createElement('input')
+    date_input_edit.type = 'date'
+    
+    date_input_edit.required = true
 
     // click e change
 
@@ -167,6 +173,7 @@ const criarDadosHorario = () => {
 
     date_input.addEventListener('change', () => {
         const myInputCalendarValue = date_input.value;
+        date_input_edit.value = myInputCalendarValue
         const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
         valorData.textContent = myInputCalendarValueBR
         //console.log(myInputCalendarValue);
@@ -204,8 +211,9 @@ const criarDadosHorario = () => {
     container_horario.append(container_dados)
     container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes, modalEditar)
     modalEditar.append(modalEditarContent)
-    modalEditarContent.append(btnBack, editH2)
+    modalEditarContent.append(btnBack, editH2, formEditar)
     btnBack.append(iconeBack)
+    formEditar.append(date_input_edit)
     data.append(label_calendar, date_input, valorData)
     inicio.append(label_time_inicio, time_input_inicio, valorInicio)
     termino.append(label_time_termino, time_input_termino, valorTermino)
