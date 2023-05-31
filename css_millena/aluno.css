@@ -359,6 +359,15 @@ label{
    color: #666666;
 }
 
+.descricaoCriterio{
+    font-size: 1rem;
+}
+
+.my-checkbox{
+    width: 30px;
+    height: 30px;
+}
+
 @media (max-width: 999px) {
 
     /* AREA DO ALUNO */

@@ -10,7 +10,7 @@ export const criterioJSON = {
       },
       {
         descricao: "Outra descricao de um criterio",
-        observacao_nota: 1,
+        observacao_nota: 0,
         margem_erro: "140",
         tipo_critico: 0,
         resultado_desejado: 130,
