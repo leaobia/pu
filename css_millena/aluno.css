@@ -264,6 +264,15 @@ label{
     display: flex;
 }
 
+.d-flex-column-edit{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 30vw;
+    margin-top: 10vh;
+    gap: 5vh;
+}
+
 .dados_botoes{
 
     gap: 4px;
@@ -304,12 +313,13 @@ label{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     opacity: .9;
     color: #ffff;
-    padding-left: 2vw;
+
+    padding-left: 4vw;
     padding-top: 2vh;
   }
 
   .editH2{
-    margin-top: 5vh;
+    margin-top: 10vh;
   }
   .buttonBack{
     background-color: #DA251C;
@@ -329,7 +339,25 @@ label{
     
 }
 
+.divEdit{
+    display: flex;
+    justify-content: space-between;
+    width: 33vw;
+}
 
+.botaoEditarSave{
+   padding: 2%;
+   width: 40%;
+   margin-left: 10vw;
+   margin-top: 10vh;
+   cursor: pointer;
+}
+
+.botaoEditarSave i{
+   font-size: 1rem;
+   text-transform: lowercase;
+   color: #666666;
+}
 
 @media (max-width: 999px) {
 
@@ -363,4 +391,15 @@ label{
         width: 270px;
         height: 270px;
     }
+    .modalContent {
+        width: 100%;
+      }
+
+      .divEdit{
+        width: 90vw;
+    }
+
+    .botaoEditarSave{
+        margin-left: 38vw;
+     }
 }
