@@ -137,6 +137,11 @@ const criarDadosHorario = () => {
     iconeBack.classList.add('fa-right-from-bracket')
 
 
+    const editH2 = document.createElement('h2')
+    editH2.textContent = 'Área de edição'
+    editH2.classList.add('editH2')
+
+
     // click e change
 
 
@@ -199,7 +204,7 @@ const criarDadosHorario = () => {
     container_horario.append(container_dados)
     container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes, modalEditar)
     modalEditar.append(modalEditarContent)
-    modalEditarContent.append(btnBack)
+    modalEditarContent.append(btnBack, editH2)
     btnBack.append(iconeBack)
     data.append(label_calendar, date_input, valorData)
     inicio.append(label_time_inicio, time_input_inicio, valorInicio)
@@ -289,6 +294,21 @@ const criarDadosHorario = () => {
         time_input_desconto.disabled = true;
         date_input.disabled = true;
 
+        button_editar.addEventListener('click', (event) => {
+            event.preventDefault();
+            //alert('editar' + time_input_desconto.value)
+            modalEditar.classList.add('d-flex')
+            modalEditar.classList.remove('d-none')
+        })
+    
+        btnBack.addEventListener('click', (event) => {
+            event.preventDefault();
+            //alert('editar' + time_input_desconto.value)
+            modalEditar.classList.remove('d-flex')
+            modalEditar.classList.add('d-none')
+        })
+    
+
     })
 
 
@@ -297,20 +317,7 @@ const criarDadosHorario = () => {
         container_dados.classList.add('d-none')
     }
     )
-    button_editar.addEventListener('click', (event) => {
-        event.preventDefault();
-        //alert('editar' + time_input_desconto.value)
-        modalEditar.classList.add('d-flex')
-        modalEditar.classList.remove('d-none')
-    })
-
-    btnBack.addEventListener('click', (event) => {
-        event.preventDefault();
-        //alert('editar' + time_input_desconto.value)
-        modalEditar.classList.remove('d-flex')
-        modalEditar.classList.add('d-none')
-    })
-
+    
 
 
 }

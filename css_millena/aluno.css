@@ -295,7 +295,8 @@ label{
     background-color: rgba(255, 255, 255, 0.8);
     z-index: -1;
   }
-  
+
+
   .modalContent {
     width: 40%;
     /* max-width: 600px;
@@ -304,17 +305,23 @@ label{
     z-index: 0; 
     background-color: #3084B4;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    opacity: .9;
+    color: #ffff;
+    padding-left: 2vw;
+    padding-top: 2vh;
   }
 
+  .editH2{
+    margin-top: 5vh;
+  }
   .buttonBack{
     background-color: #DA251C;
     border: 1px transparent;
     border-radius: 20px;
+    opacity: .9;
     padding: 20px;
     display: grid;
     place-content: center;
-    margin-left: 2vw;
-    margin-top: 2vh;
     cursor: pointer;
     transition: shadow .2s;
 }
@@ -324,6 +331,8 @@ label{
         font-size: 1rem;
     
 }
+
+
 
 @media (max-width: 999px) {
 
