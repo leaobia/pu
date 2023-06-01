@@ -11,6 +11,7 @@ export const criterioForEach = () => {
 
         const container_dados = document.createElement('div')
         container_dados.classList.add('dados')
+        container_dados.classList.add('criteriosDados')
         container_dados.id = 'dados'
 
         const descricaoCriterio = document.createElement('i')
@@ -31,17 +32,24 @@ export const criterioForEach = () => {
         avaliacao.classList.add('fa-solid')
         avaliacao.classList.add('fa-xmark')
 
+        const container = document.createElement('div')
+        container.classList.add('containerInput')
+
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.classList.add('my-checkbox');
         checkbox.disabled = true;
+
+        const spanCheck = document.createElement('span')
+        spanCheck.classList.add('checkmark')
 
         if(criterio.observacao_nota == 1){
             checkbox.checked = true;
         }
 
         container_relatorio.append(container_dados)
-        container_dados.append(descricaoCriterio, desejado, obtido, avaliacao, checkbox)
+        container_dados.append(descricaoCriterio, desejado, obtido, avaliacao, container)
+        container.append(checkbox,spanCheck)
 
 
     });
