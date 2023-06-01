@@ -11,6 +11,34 @@ const fetchAPI = async () => {
     console.log(registroTempos.length);
     registroTempos.forEach((tempo) => {
         console.log(tempo.data_projeto);
+
+        const container_horario = document.getElementById('teste')
+
+        const container_dados = document.createElement('div')
+        container_dados.classList.add('dados')
+        container_dados.id = 'dados'
+
+        const data = document.createElement('div')
+        data.classList.add('data')
+
+        const valorData = document.createElement('i')
+        valorData.textContent = tempo.data_projeto.substring(8, 10) + '/' + tempo.data_projeto.substring(5, 7);
+
+        const date_input = document.createElement('input')
+        date_input.type = 'date'
+        date_input.classList.add('date_input')
+
+
+        const label_calendar = document.createElement('label')
+        label_calendar.classList.add('fas')
+        label_calendar.classList.add('fa-calendar-alt')
+        label_calendar.for = date_input
+
+        container_horario.append(container_dados)
+        container_dados.append(data)
+    
+        data.append(label_calendar, date_input, valorData)
+
     })
 }
 
@@ -354,22 +382,22 @@ const criarDadosHorario = () => {
             let somaHours = (hour2 - hour1);
             let somaMinutes = (minute2 - minute1);
 
-            let somaHoursLiquid = somaHours  - hour3;
+            let somaHoursLiquid = somaHours - hour3;
             let somaMinutesLiquid = somaMinutes - minute3;
 
             if (somaMinutes >= 60) {
                 somaHours++;
                 somaMinutes -= 60;
             }
-   
+
             if (somaMinutesLiquid < 0) {
                 somaHoursLiquid--;
                 somaMinutesLiquid += 60;
-              }
-              
-              if (somaHoursLiquid < 0) {
+            }
+
+            if (somaHoursLiquid < 0) {
                 somaHoursLiquid += 24;
-              }
+            }
 
             //console.log(`${somaHours}h${somaMinutes}`);
 
@@ -445,11 +473,11 @@ const criarDadosHorario = () => {
 
 export const eventoBotãoAdicionar = () => {
 
-   fetchAPI()
+    fetchAPI()
 
     const botao_adc = document.getElementById('adicionar')
 
-   // pesquisarHorario()
+    // pesquisarHorario()
 
 
     botao_adc.addEventListener('click', () => {
