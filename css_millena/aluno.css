@@ -308,7 +308,7 @@ label{
     /* max-width: 600px;
     margin: 38vh auto;
     padding: 20px; */
-    z-index: 0; 
+    z-index: 1; 
     background-color: #3084B4;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     opacity: .9;
@@ -394,7 +394,7 @@ label{
     left: 0;
     height: 28px;
     width:  28px;
-    background-color: white;
+    background-color: #6666;
     border: 2px solid black;
     border-radius: 2px;
   }
@@ -419,7 +419,7 @@ label{
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid white;
+    border: solid #eeee;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);

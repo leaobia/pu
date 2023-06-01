@@ -30,11 +30,11 @@ export const criterioForEach = () => {
         const margemMaximo = document.createElement('span')
 
         criterio.margem_erro.forEach((margem) => {
-            if(margem.minimo != null)
+            if (margem.minimo != null)
                 margemMinimo.textContent = '-' + margem.minimo;
-            if(margem.maximo != null)
+            if (margem.maximo != null)
                 margemMaximo.textContent = '+' + margem.maximo;
-        }) 
+        })
 
         const obtido = document.createElement('i')
         obtido.classList.add('fa-sharp')
@@ -57,7 +57,7 @@ export const criterioForEach = () => {
         const spanCheck = document.createElement('span')
         spanCheck.classList.add('checkmark')
 
-        if(criterio.observacao_nota == 1){
+        if (criterio.observacao_nota == 1) {
             checkbox.checked = true;
         }
 
@@ -69,12 +69,26 @@ export const criterioForEach = () => {
         buttonEdit.classList.add('far')
         buttonEdit.classList.add('fa-edit')
 
+        const modalEditar = document.createElement('div')
+        modalEditar.classList.add('d-none')
+        modalEditar.classList.add('modal')
+
+        const modalEditarContent = document.createElement('div')
+        modalEditar.classList.add('modalContent')
+
         container_relatorio.append(container_dados)
-        container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container, divButtonEdit)
+        container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container, divButtonEdit, modalEditar)
+        modalEditar.append(modalEditarContent)
         desejadoContainer.append(desejado, margemErroContainer)
         margemErroContainer.append(margemMinimo, margemMaximo)
-        container.append(checkbox,spanCheck)
+        container.append(checkbox, spanCheck)
         divButtonEdit.append(buttonEdit)
+
+        buttonEdit.addEventListener('click', (event) => {
+            event.preventDefault();
+            modalEditar.classList.add('d-flex')
+            modalEditar.classList.remove('d-none')
+        })
 
 
     });
