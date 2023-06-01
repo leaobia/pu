@@ -29,11 +29,24 @@ export const criterioForEach = () => {
         const margemMinimo = document.createElement('span')
         const margemMaximo = document.createElement('span')
 
+        const desejadoContainer2 = document.createElement('div')
+        desejadoContainer2.classList.add('desejadoContainer')
+
+        const desejado2 = document.createElement('i')
+        desejado2.textContent = criterio.resultado_desejado
+
+        const margemErroContainer2 = document.createElement('div')
+        margemErroContainer2.classList.add('margemErroContainer')
+        const margemMinimo2 = document.createElement('span')
+        const margemMaximo2 = document.createElement('span')
+
         criterio.margem_erro.forEach((margem) => {
             if (margem.minimo != null)
                 margemMinimo.textContent = '-' + margem.minimo;
+                margemMinimo2.textContent = '-' + margem.minimo;
             if (margem.maximo != null)
                 margemMaximo.textContent = '+' + margem.maximo;
+                margemMaximo2.textContent = '+' + margem.maximo;
         })
 
         const obtido = document.createElement('i')
@@ -139,8 +152,12 @@ export const criterioForEach = () => {
         simOption.value = 'sim'
         simOption.textContent = 'sim'
 
+        const noOption = document.createElement('option')
+        noOption.value = 'nada'
+        noOption.textContent = ''
+
         const naoOption = document.createElement('option')
-        naoOption.value = 'nao'
+        naoOption.value = 'não'
         naoOption.textContent = 'não'
 
         const obtidoContainer = document.createElement('div')
@@ -167,11 +184,13 @@ export const criterioForEach = () => {
         obtidoContainer.append(spanObtido, inputObtido)
         formAvaliacao.append(opçoes)
 
-        opçoes.append(simOption, naoOption)
-        showDesejadoContainer.append(spanDesejado, desejadoContainer)
+        opçoes.append(noOption,simOption, naoOption)
+        showDesejadoContainer.append(spanDesejado, desejadoContainer2)
         btnBack.append(iconeBack)
         desejadoContainer.append(desejado, margemErroContainer)
         margemErroContainer.append(margemMinimo, margemMaximo)
+        desejadoContainer2.append(desejado2, margemErroContainer2)
+        margemErroContainer2.append(margemMinimo2, margemMaximo2)
         container.append(checkbox, spanCheck)
         divButtonEdit.append(buttonEdit)
 
@@ -187,6 +206,28 @@ export const criterioForEach = () => {
             modalEditar.classList.add('d-none')
         })
 
+        opçoes.addEventListener('change', function() {
+
+            const valorSelecionado = opçoes.value;
+            if(valorSelecionado != 'nada'){
+                btnSave2.classList.remove('d-none');
+                btnSave2.classList.add('d-flex');
+    
+                btnSave2.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    
+                    avaliacao.classList.remove('fa-sharp')
+                    avaliacao.classList.remove('fa-solid')
+                    avaliacao.classList.remove('fa-xmark')
+                    avaliacao.textContent = valorSelecionado
+                })
+            }
+
+        
+            
+          });
+          
+
             inputObtido.addEventListener('change', () => {
     
                 btnSave2.classList.remove('d-none');
@@ -195,8 +236,12 @@ export const criterioForEach = () => {
                 btnSave2.addEventListener('click', (event) => {
                     event.preventDefault();
     
-                    obtido.textContent = " ";
+                   
                     const newValue = inputObtido.value;
+
+                    obtido.classList.remove('fa-sharp')
+                    obtido.classList.remove('fa-solid')
+                    obtido.classList.remove('fa-xmark')
                     
                     obtido.textContent = newValue;
                     const changeEvent = new Event('change');
