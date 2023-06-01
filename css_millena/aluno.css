@@ -426,6 +426,23 @@ label{
     transform: rotate(45deg);
   }
 
+  .desejadoContainer{
+      display: flex;
+      gap: 10%;
+  }
+
+  .margemErroContainer{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      font-size: 10px;
+      padding-bottom: 4px;
+  }
+
+  .margemErroContainer span{
+      height: 15px;
+  }
+
 @media (max-width: 999px) {
 
     /* AREA DO ALUNO */

@@ -18,9 +18,23 @@ export const criterioForEach = () => {
         descricaoCriterio.classList.add('descricaoCriterio')
         descricaoCriterio.textContent = criterio.descricao.slice(0, 22) + "...";
 
+        const desejadoContainer = document.createElement('div')
+        desejadoContainer.classList.add('desejadoContainer')
 
         const desejado = document.createElement('i')
-        desejado.textContent = criterio.margem_erro
+        desejado.textContent = criterio.resultado_desejado
+
+        const margemErroContainer = document.createElement('div')
+        margemErroContainer.classList.add('margemErroContainer')
+        const margemMinimo = document.createElement('span')
+        const margemMaximo = document.createElement('span')
+
+        criterio.margem_erro.forEach((margem) => {
+            if(margem.minimo != null)
+                margemMinimo.textContent = '-' + margem.minimo;
+            if(margem.maximo != null)
+                margemMaximo.textContent = '+' + margem.maximo;
+        }) 
 
         const obtido = document.createElement('i')
         obtido.classList.add('fa-sharp')
@@ -48,7 +62,9 @@ export const criterioForEach = () => {
         }
 
         container_relatorio.append(container_dados)
-        container_dados.append(descricaoCriterio, desejado, obtido, avaliacao, container)
+        container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container)
+        desejadoContainer.append(desejado, margemErroContainer)
+        margemErroContainer.append(margemMinimo, margemMaximo)
         container.append(checkbox,spanCheck)
 
 
