@@ -1,7 +1,10 @@
 'use strict'
 
+import {pesquisarHorario} from './apiRelatorio.js'
 
 export const getValuesOfInputTimeDate = () => {
+
+   console.log(pesquisarHorario());
 
     const labelCalendar = document.getElementById("label_calendar");
     const inputCalendar = document.getElementById("date_input");

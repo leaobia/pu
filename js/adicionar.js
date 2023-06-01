@@ -1,7 +1,8 @@
 'use strict'
-
+import {pesquisarHorario} from './apiRelatorio.js'
 const criarDadosHorario = () => {
 
+   pesquisarHorario()
     const container_horario = document.getElementById('teste')
 
     const container_dados = document.createElement('div')
