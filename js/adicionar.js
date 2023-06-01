@@ -1,8 +1,21 @@
 'use strict'
-import {pesquisarHorario} from './apiRelatorio.js'
+
+import { pesquisarHorario } from './apiHorario.js';
+
+const horarios = await pesquisarHorario();
+const registroTempos = horarios;
+console.log(registroTempos);
+
+
+
+const fetchAPI = () => {
+     
+}
+
+
+
 const criarDadosHorario = () => {
 
-   pesquisarHorario()
     const container_horario = document.getElementById('teste')
 
     const container_dados = document.createElement('div')
@@ -430,8 +443,11 @@ const criarDadosHorario = () => {
 
 export const eventoBotãoAdicionar = () => {
 
+   
+
     const botao_adc = document.getElementById('adicionar')
 
+   // pesquisarHorario()
 
 
     botao_adc.addEventListener('click', () => {
@@ -441,6 +457,7 @@ export const eventoBotãoAdicionar = () => {
 
         botao_adc.classList.add('d-none')
         botao_adc.classList.remove('d-flex')
+
         criarDadosHorario()
     })
 }
