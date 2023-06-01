@@ -109,13 +109,54 @@ export const criterioForEach = () => {
         spanDesejado.classList.add('showH3')
         spanDesejado.textContent = 'Desejado: '
 
+    
+
+        const avaliacaoObtidoContainer = document.createElement('div')
+        avaliacaoObtidoContainer.classList.add('avaliacaoObtidoContainer')
+
+        
+        const spanObtido = document.createElement('h3')
+        spanObtido.classList.add('showH3')
+        spanObtido.textContent = 'Obtido: '
+
+        const inputObtido = document.createElement('input')
+        inputObtido.type = 'number'
+
+        const avaliacaoContainer = document.createElement('div')
+        avaliacaoContainer.classList.add('avaliacaoContainer')
+
+        const formAvaliacao = document.createElement('form')
+        formAvaliacao.method = 'post'
+
+        const spanAvaliacao = document.createElement('h3')
+        spanAvaliacao.classList.add('showH3')
+        spanAvaliacao.textContent = 'Avaliação: '
+
+        const opçoes = document.createElement('select')
+        opçoes.name = 'S/N'
+
+        const simOption = document.createElement('option')
+        simOption.value = 'sim'
+        simOption.textContent = 'sim'
+
+        const naoOption = document.createElement('option')
+        naoOption.value = 'nao'
+        naoOption.textContent = 'não'
+
+        const obtidoContainer = document.createElement('div')
+        obtidoContainer.classList.add('obtidoContainer')
 
         container_relatorio.append(container_dados)
         container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container, divButtonEdit, modalEditar)
         modalEditar.append(modalEditarContent)
         modalEditarContent.append(btnBack, editH2, contentEditRelatorio)
         contentEditRelatorio.append(contentShowDesc)
-        contentShowDesc.append(showH3,textDesc, showDesejadoContainer)
+        contentShowDesc.append(showH3,textDesc, showDesejadoContainer, avaliacaoObtidoContainer)
+        avaliacaoObtidoContainer.append(avaliacaoContainer,obtidoContainer)
+        avaliacaoContainer.append(spanAvaliacao,formAvaliacao)
+        obtidoContainer.append(spanObtido,inputObtido)
+        formAvaliacao.append(opçoes)
+        opçoes.append(simOption,naoOption)
         showDesejadoContainer.append(spanDesejado,desejadoContainer)
         btnBack.append(iconeBack)
         desejadoContainer.append(desejado, margemErroContainer)

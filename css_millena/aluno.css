@@ -505,6 +505,26 @@ label{
     display: flex;
     gap: 2vw;
 }
+
+.avaliacaoObtidoContainer{
+    width: 35vw;
+    gap: 4vw;
+    display: flex;
+}
+
+.avaliacaoContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.obtidoContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+}
 @media (max-width: 999px) {
 
     /* AREA DO ALUNO */
