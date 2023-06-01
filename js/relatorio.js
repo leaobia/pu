@@ -101,7 +101,13 @@ export const criterioForEach = () => {
         textDesc.classList.add('textDesc')
         textDesc.textContent = criterio.descricao
         textDesc.disabled = true
-    
+
+        const showDesejadoContainer = document.createElement('div')
+        showDesejadoContainer.classList.add('showDesejadoContainer')
+
+        const spanDesejado = document.createElement('h3')
+        spanDesejado.classList.add('showH3')
+        spanDesejado.textContent = 'Desejado: '
 
 
         container_relatorio.append(container_dados)
@@ -109,7 +115,8 @@ export const criterioForEach = () => {
         modalEditar.append(modalEditarContent)
         modalEditarContent.append(btnBack, editH2, contentEditRelatorio)
         contentEditRelatorio.append(contentShowDesc)
-        contentShowDesc.append(showH3,textDesc)
+        contentShowDesc.append(showH3,textDesc, showDesejadoContainer)
+        showDesejadoContainer.append(spanDesejado,desejadoContainer)
         btnBack.append(iconeBack)
         desejadoContainer.append(desejado, margemErroContainer)
         margemErroContainer.append(margemMinimo, margemMaximo)

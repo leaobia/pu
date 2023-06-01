@@ -500,6 +500,11 @@ label{
 .showH3{
     font-size: 1rem;
 }
+
+.showDesejadoContainer{
+    display: flex;
+    gap: 2vw;
+}
 @media (max-width: 999px) {
 
     /* AREA DO ALUNO */
