@@ -61,11 +61,20 @@ export const criterioForEach = () => {
             checkbox.checked = true;
         }
 
+        const divButtonEdit = document.createElement('div')
+        divButtonEdit.classList.add('adicionar_editar_deletar')
+        divButtonEdit.classList.add('criterio-button')
+
+        const buttonEdit = document.createElement('button')
+        buttonEdit.classList.add('far')
+        buttonEdit.classList.add('fa-edit')
+
         container_relatorio.append(container_dados)
-        container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container)
+        container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container, divButtonEdit)
         desejadoContainer.append(desejado, margemErroContainer)
         margemErroContainer.append(margemMinimo, margemMaximo)
         container.append(checkbox,spanCheck)
+        divButtonEdit.append(buttonEdit)
 
 
     });
