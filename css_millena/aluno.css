@@ -394,7 +394,7 @@ label{
     left: 0;
     height: 28px;
     width:  28px;
-    background-color: #6666;
+    background-color: white;
     border: 2px solid black;
     border-radius: 2px;
   }
@@ -419,7 +419,7 @@ label{
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid #eeee;
+    border: solid white;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -468,6 +468,37 @@ label{
     color: rgba(0, 0, 0, 0.5);
     padding: 1% 0% 1% 0%;
     border-bottom: 2px solid rgba(48, 132, 180, 0.5);
+}
+
+.contentEditRelatorio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+}
+
+.contentShowDesc{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 3vh;
+    gap:3vh;
+}
+
+.textDesc{
+    resize: none;
+    width: 100%;
+    background-color: white;
+    font-size: 1rem;
+    padding-top: 1%;
+    padding-left: 1%;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: black;
+}
+
+.showH3{
+    font-size: 1rem;
 }
 @media (max-width: 999px) {
 
@@ -528,4 +559,11 @@ label{
       .criterio-button{
         right: 5;
       }
+
+      .contentEditRelatorio{
+        width: 90vw;
+    }
+    .textDesc{
+      padding: 2%;
+    }
 }

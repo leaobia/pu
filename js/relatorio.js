@@ -76,9 +76,41 @@ export const criterioForEach = () => {
         const modalEditarContent = document.createElement('div')
         modalEditar.classList.add('modalContent')
 
+        const btnBack = document.createElement('button')
+        btnBack.classList.add('buttonBack')
+    
+        const iconeBack = document.createElement('i')
+        iconeBack.classList.add('fa-solid')
+        iconeBack.classList.add('fa-right-from-bracket')
+
+        const editH2 = document.createElement('h2')
+        editH2.textContent = 'Área de edição'
+        editH2.classList.add('editH2')
+
+        const contentEditRelatorio = document.createElement('div')
+        contentEditRelatorio.classList.add('contentEditRelatorio')
+
+        const contentShowDesc = document.createElement('div')
+        contentShowDesc.classList.add('contentShowDesc')
+
+        const showH3 = document.createElement('h3')
+        showH3.classList.add('showH3')
+        showH3.textContent = 'Descrição do critério:'
+
+        const textDesc = document.createElement('textarea')
+        textDesc.classList.add('textDesc')
+        textDesc.textContent = criterio.descricao
+        textDesc.disabled = true
+    
+
+
         container_relatorio.append(container_dados)
         container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container, divButtonEdit, modalEditar)
         modalEditar.append(modalEditarContent)
+        modalEditarContent.append(btnBack, editH2, contentEditRelatorio)
+        contentEditRelatorio.append(contentShowDesc)
+        contentShowDesc.append(showH3,textDesc)
+        btnBack.append(iconeBack)
         desejadoContainer.append(desejado, margemErroContainer)
         margemErroContainer.append(margemMinimo, margemMaximo)
         container.append(checkbox, spanCheck)
@@ -89,6 +121,13 @@ export const criterioForEach = () => {
             modalEditar.classList.add('d-flex')
             modalEditar.classList.remove('d-none')
         })
+
+        btnBack.addEventListener('click', (event) => {
+            event.preventDefault();
+            modalEditar.classList.remove('d-flex')
+            modalEditar.classList.add('d-none')
+        })
+
 
 
     });
