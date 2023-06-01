@@ -1,15 +1,17 @@
 'use strict'
-
 import { pesquisarHorario } from './apiHorario.js';
 
-const horarios = await pesquisarHorario();
-const registroTempos = horarios;
-console.log(registroTempos);
 
 
 
-const fetchAPI = () => {
-     
+
+const fetchAPI = async () => {
+    const horarios = await pesquisarHorario();
+    const registroTempos = horarios;
+    console.log(registroTempos.length);
+    registroTempos.forEach((tempo) => {
+        console.log(tempo.data_projeto);
+    })
 }
 
 
@@ -443,7 +445,7 @@ const criarDadosHorario = () => {
 
 export const eventoBotãoAdicionar = () => {
 
-   
+   fetchAPI()
 
     const botao_adc = document.getElementById('adicionar')
 
