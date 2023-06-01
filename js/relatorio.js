@@ -78,7 +78,7 @@ export const criterioForEach = () => {
 
         const btnBack = document.createElement('button')
         btnBack.classList.add('buttonBack')
-    
+
         const iconeBack = document.createElement('i')
         iconeBack.classList.add('fa-solid')
         iconeBack.classList.add('fa-right-from-bracket')
@@ -109,12 +109,12 @@ export const criterioForEach = () => {
         spanDesejado.classList.add('showH3')
         spanDesejado.textContent = 'Desejado: '
 
-    
+
 
         const avaliacaoObtidoContainer = document.createElement('div')
         avaliacaoObtidoContainer.classList.add('avaliacaoObtidoContainer')
 
-        
+
         const spanObtido = document.createElement('h3')
         spanObtido.classList.add('showH3')
         spanObtido.textContent = 'Obtido: '
@@ -146,18 +146,29 @@ export const criterioForEach = () => {
         const obtidoContainer = document.createElement('div')
         obtidoContainer.classList.add('obtidoContainer')
 
+
+        const btnSave2 = document.createElement('button')
+        btnSave2.classList.add('botaoEditarSave')
+        btnSave2.classList.add('d-none')
+
+        const textSave = document.createElement('i')
+        textSave.textContent = 'Save'
+
         container_relatorio.append(container_dados)
         container_dados.append(descricaoCriterio, desejadoContainer, obtido, avaliacao, container, divButtonEdit, modalEditar)
         modalEditar.append(modalEditarContent)
         modalEditarContent.append(btnBack, editH2, contentEditRelatorio)
         contentEditRelatorio.append(contentShowDesc)
-        contentShowDesc.append(showH3,textDesc, showDesejadoContainer, avaliacaoObtidoContainer)
-        avaliacaoObtidoContainer.append(avaliacaoContainer,obtidoContainer)
-        avaliacaoContainer.append(spanAvaliacao,formAvaliacao)
-        obtidoContainer.append(spanObtido,inputObtido)
+        btnSave2.append(textSave)
+
+        contentShowDesc.append(showH3, textDesc, showDesejadoContainer, avaliacaoObtidoContainer, btnSave2)
+        avaliacaoObtidoContainer.append(avaliacaoContainer, obtidoContainer)
+        avaliacaoContainer.append(spanAvaliacao, formAvaliacao)
+        obtidoContainer.append(spanObtido, inputObtido)
         formAvaliacao.append(opçoes)
-        opçoes.append(simOption,naoOption)
-        showDesejadoContainer.append(spanDesejado,desejadoContainer)
+
+        opçoes.append(simOption, naoOption)
+        showDesejadoContainer.append(spanDesejado, desejadoContainer)
         btnBack.append(iconeBack)
         desejadoContainer.append(desejado, margemErroContainer)
         margemErroContainer.append(margemMinimo, margemMaximo)
@@ -176,7 +187,26 @@ export const criterioForEach = () => {
             modalEditar.classList.add('d-none')
         })
 
-
+            inputObtido.addEventListener('change', () => {
+    
+                btnSave2.classList.remove('d-none');
+                btnSave2.classList.add('d-flex');
+    
+                btnSave2.addEventListener('click', (event) => {
+                    event.preventDefault();
+    
+                    obtido.textContent = " ";
+                    const newValue = inputObtido.value;
+                    
+                    obtido.textContent = newValue;
+                    const changeEvent = new Event('change');
+                    obtido.dispatchEvent(changeEvent);
+    
+    
+                    modalEditar.classList.remove('d-flex')
+                    modalEditar.classList.add('d-none')
+                })
+        });
 
     });
 }
