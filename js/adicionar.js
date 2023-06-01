@@ -34,10 +34,62 @@ const fetchAPI = async () => {
         label_calendar.classList.add('fa-calendar-alt')
         label_calendar.for = date_input
 
+        const inicio = document.createElement('div')
+        inicio.classList.add('inicio')
+
+        const valorInicio = document.createElement('i')
+        valorInicio.textContent = tempo.duracao_inicio.substring(11, 16);
+
+        const time_input_inicio = document.createElement('input')
+        time_input_inicio.type = 'time'
+        time_input_inicio.classList.add('time_input_inicio')
+
+        const label_time_inicio = document.createElement('label')
+        label_time_inicio.classList.add('fas')
+        label_time_inicio.classList.add('fa-clock')
+        label_time_inicio.classList.add('label_time')
+        label_time_inicio.for = time_input_inicio
+
+        const termino = document.createElement('div')
+        termino.classList.add('termino')
+
+        const valorTermino = document.createElement('i')
+        valorTermino.textContent = tempo.duracao_termino.substring(11, 16);
+
+        const time_input_termino = document.createElement('input')
+        time_input_termino.type = 'time'
+        time_input_termino.classList.add('time_input_inicio')
+
+        const label_time_termino = document.createElement('label')
+        label_time_termino.classList.add('fas')
+        label_time_termino.classList.add('fa-clock')
+        label_time_termino.classList.add('label_time')
+        label_time_termino.for = time_input_termino
+  
+        const desconto = document.createElement('div')
+        desconto.classList.add('termino')
+
+        const valorDesconto = document.createElement('i')
+        valorDesconto.textContent = tempo.duracao_termino.substring(11, 16);
+
+        const time_input_desconto = document.createElement('input')
+        time_input_desconto.type = 'time'
+        time_input_desconto.classList.add('time_input_inicio')
+
+        const label_time_desconto = document.createElement('label')
+        label_time_desconto.classList.add('fas')
+        label_time_desconto.classList.add('fa-clock')
+        label_time_desconto.classList.add('label_time')
+        label_time_desconto.for = time_input_desconto
+  
+
         container_horario.append(container_dados)
-        container_dados.append(data)
-    
+        container_dados.append(data, inicio,termino, desconto)
+
         data.append(label_calendar, date_input, valorData)
+        inicio.append(label_time_inicio, time_input_inicio, valorInicio)
+        termino.append(label_time_termino,time_input_termino, valorTermino)
+        desconto.append(label_time_desconto,time_input_desconto,valorDesconto)
 
     })
 }
