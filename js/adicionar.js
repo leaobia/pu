@@ -1,5 +1,6 @@
 'use strict'
 import { pesquisarHorario } from './apiHorario.js';
+import { createHorario } from './apiHorario.js';
 
 
 const fetchAPI = async () => {
@@ -7,7 +8,6 @@ const fetchAPI = async () => {
     const registroTempos = horarios;
     console.log(registroTempos.length);
     registroTempos.forEach((tempo) => {
-        console.log(tempo.data_projeto);
 
         const container_horario = document.getElementById('teste')
 
@@ -95,12 +95,12 @@ const fetchAPI = async () => {
         dados_botoes.classList.add('dados_botoes')
         dados_botoes.classList.add('dados_botoes2')
         dados_botoes.classList.add('d-none')
-    
+
         const button_editar = document.createElement('button')
         button_editar.classList.add('far')
         button_editar.classList.add('fa-edit')
         button_editar.id = 'editar'
-    
+
         const button_excluir = document.createElement('button')
         button_excluir.classList.add('fa-solid')
         button_excluir.classList.add('fa-trash')
@@ -244,7 +244,7 @@ const criarDadosHorario = () => {
 
         const myInputCalendarValue = date_input.value;
         //console.log(myInputCalendarValue);
-        
+
         const myInputCalendarValueBR = date_input.value.substring(8, 10) + '/' + date_input.value.substring(5, 7);
         valorData.textContent = myInputCalendarValueBR
     });
@@ -267,7 +267,7 @@ const criarDadosHorario = () => {
     time_input_desconto.addEventListener('change', () => {
 
         const myInputValue = time_input_desconto.value;
-        
+
         //time_input_desconto_edit.value = myInputValue
         //const formatoBack = myInputValue + ':00'
         //console.log(formatoBack);
@@ -288,7 +288,7 @@ const criarDadosHorario = () => {
     desconto.append(label_time_desconto, time_input_desconto, valorDesconto)
     liquido.append(valor_liquido)
     total_geral.append(valor_total)
-   
+
 
 
     const btc_save = document.getElementById('salvar')
@@ -341,6 +341,14 @@ const criarDadosHorario = () => {
                 somaMinutes -= 60;
             }
 
+            if (somaMinutes < 10) {
+                somaMinutes = 0 + somaMinutes;
+            }
+
+            if (somaHours < 10) {
+                somaHours = 0 + somaHours;
+            }
+
             if (somaMinutesLiquid < 0) {
                 somaHoursLiquid--;
                 somaMinutesLiquid += 60;
@@ -354,6 +362,9 @@ const criarDadosHorario = () => {
             const valorTotal = `${somaHours}h${somaMinutes}`
             const valorTotalLiquid = `${somaHoursLiquid}h${somaMinutesLiquid}`
 
+            const valorTotalAPI = `${somaHours}:${somaMinutes}`
+            const valorTotalLiquidAPI = `${somaHoursLiquid}:${somaMinutesLiquid}`
+
 
             if (valorTotal == '0hNaN' || valorTotalLiquid == '0hNaN') {
                 console.log('Não foi possível processar os valores.');
@@ -362,7 +373,16 @@ const criarDadosHorario = () => {
                 valor_total.textContent = valorTotal.replace('-', '0')
                 valor_liquido.textContent = valorTotalLiquid.replace('-', '0')
 
-                
+                const horario = {
+                    "data_projeto": `${date_input.value}`,
+                    "duracao_inicio": `${time_input_inicio.value.substring(0, 2) + ':' + time_input_inicio.value.substring(3, 5)}`,
+                    "duracao_termino": `${time_input_termino.value.substring(0, 2) + ':' + time_input_termino.value.substring(3, 5)}`,
+                    "desconto": `${time_input_desconto.value.substring(0, 2) + ':' + time_input_desconto.value.substring(3, 5)}`,
+                    "liquido": `${valorTotalLiquidAPI}`,
+                    "total_geral": `${valorTotalAPI}`
+                }
+                console.log(horario);
+                createHorario(horario)
             }
 
             const btc_save = document.getElementById('salvar')
