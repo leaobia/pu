@@ -1,11 +1,20 @@
 'use strict'
 
-import { criterioJSON } from './relatoriojson.js'
+//import { criterioJSON } from './relatoriojson.js'
+import { pesquisarCriterios } from './apiCriterios.js'
 
-const criterios = criterioJSON.criterios;
 
-export const criterioForEach = () => {
-    criterios.forEach((criterio) => {
+//const criterios = criterioJSON.criterios;
+
+export const criterioForEach = async () => {
+
+    const criterios = await pesquisarCriterios();
+
+
+    const registroCriterios = criterios;
+    console.log(registroCriterios);
+
+    registroCriterios.forEach((criterio) => {
 
         const container_relatorio = document.getElementById('container-relatorio')
 
@@ -16,13 +25,13 @@ export const criterioForEach = () => {
 
         const descricaoCriterio = document.createElement('i')
         descricaoCriterio.classList.add('descricaoCriterio')
-        descricaoCriterio.textContent = criterio.descricao.slice(0, 22) + "...";
+        descricaoCriterio.textContent = criterio.descricao_criterio.slice(0, 15) + "...";
 
         const desejadoContainer = document.createElement('div')
         desejadoContainer.classList.add('desejadoContainer')
 
         const desejado = document.createElement('i')
-        desejado.textContent = criterio.resultado_desejado
+        desejado.textContent = criterio.resultado_desejado_criterio
 
         const margemErroContainer = document.createElement('div')
         margemErroContainer.classList.add('margemErroContainer')
@@ -33,21 +42,22 @@ export const criterioForEach = () => {
         desejadoContainer2.classList.add('desejadoContainer')
 
         const desejado2 = document.createElement('i')
-        desejado2.textContent = criterio.resultado_desejado
+        desejado2.textContent = criterio.resultado_desejado_criterio
 
         const margemErroContainer2 = document.createElement('div')
         margemErroContainer2.classList.add('margemErroContainer')
         const margemMinimo2 = document.createElement('span')
         const margemMaximo2 = document.createElement('span')
 
-        criterio.margem_erro.forEach((margem) => {
-            if (margem.minimo != null)
-                margemMinimo.textContent = '-' + margem.minimo;
-                margemMinimo2.textContent = '-' + margem.minimo;
-            if (margem.maximo != null)
-                margemMaximo.textContent = '+' + margem.maximo;
-                margemMaximo2.textContent = '+' + margem.maximo;
-        })
+        console.log(criterio.margem_erro.message);
+
+        if (criterio.margem_erro.message != null)
+            margemMinimo.textContent = '-' + criterio.margem_erro.message;
+        margemMinimo2.textContent = '-' + criterio.margem_erro.message;
+        if (criterio.margem_erro.status != null)
+            margemMaximo.textContent = '+' + criterio.margem_erro.status;
+        margemMaximo2.textContent = '+' + criterio.margem_erro.status;
+
 
         const obtido = document.createElement('i')
         obtido.classList.add('fa-sharp')
@@ -70,7 +80,7 @@ export const criterioForEach = () => {
         const spanCheck = document.createElement('span')
         spanCheck.classList.add('checkmark')
 
-        if (criterio.observacao_nota == 1) {
+        if (criterio.tipo_critico_criterio == 1) {
             checkbox.checked = true;
         }
 
@@ -112,7 +122,7 @@ export const criterioForEach = () => {
 
         const textDesc = document.createElement('textarea')
         textDesc.classList.add('textDesc')
-        textDesc.textContent = criterio.descricao
+        textDesc.textContent = criterio.descricao_criterio
         textDesc.disabled = true
 
         const showDesejadoContainer = document.createElement('div')
@@ -184,7 +194,7 @@ export const criterioForEach = () => {
         obtidoContainer.append(spanObtido, inputObtido)
         formAvaliacao.append(opçoes)
 
-        opçoes.append(noOption,simOption, naoOption)
+        opçoes.append(noOption, simOption, naoOption)
         showDesejadoContainer.append(spanDesejado, desejadoContainer2)
         btnBack.append(iconeBack)
         desejadoContainer.append(desejado, margemErroContainer)
@@ -206,16 +216,16 @@ export const criterioForEach = () => {
             modalEditar.classList.add('d-none')
         })
 
-        opçoes.addEventListener('change', function() {
+        opçoes.addEventListener('change', function () {
 
             const valorSelecionado = opçoes.value;
-            if(valorSelecionado != 'nada'){
+            if (valorSelecionado != 'nada') {
                 btnSave2.classList.remove('d-none');
                 btnSave2.classList.add('d-flex');
-    
+
                 btnSave2.addEventListener('click', (event) => {
                     event.preventDefault();
-                    
+
                     avaliacao.classList.remove('fa-sharp')
                     avaliacao.classList.remove('fa-solid')
                     avaliacao.classList.remove('fa-xmark')
@@ -223,34 +233,34 @@ export const criterioForEach = () => {
                 })
             }
 
-        
-            
-          });
-          
 
-            inputObtido.addEventListener('change', () => {
-    
-                btnSave2.classList.remove('d-none');
-                btnSave2.classList.add('d-flex');
-    
-                btnSave2.addEventListener('click', (event) => {
-                    event.preventDefault();
-    
-                   
-                    const newValue = inputObtido.value;
 
-                    obtido.classList.remove('fa-sharp')
-                    obtido.classList.remove('fa-solid')
-                    obtido.classList.remove('fa-xmark')
-                    
-                    obtido.textContent = newValue;
-                    const changeEvent = new Event('change');
-                    obtido.dispatchEvent(changeEvent);
-    
-    
-                    modalEditar.classList.remove('d-flex')
-                    modalEditar.classList.add('d-none')
-                })
+        });
+
+
+        inputObtido.addEventListener('change', () => {
+
+            btnSave2.classList.remove('d-none');
+            btnSave2.classList.add('d-flex');
+
+            btnSave2.addEventListener('click', (event) => {
+                event.preventDefault();
+
+
+                const newValue = inputObtido.value;
+
+                obtido.classList.remove('fa-sharp')
+                obtido.classList.remove('fa-solid')
+                obtido.classList.remove('fa-xmark')
+
+                obtido.textContent = newValue;
+                const changeEvent = new Event('change');
+                obtido.dispatchEvent(changeEvent);
+
+
+                modalEditar.classList.remove('d-flex')
+                modalEditar.classList.add('d-none')
+            })
         });
 
     });
