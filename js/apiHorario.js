@@ -19,6 +19,21 @@ export const pesquisarHorario = async () => {
   
     fetch(url, options)
   }
+
+
+  export const updateCurso = async (idHorario) => {
+    const url = `https://usinagem-senai.cyclic.app/v1/projeto-usinagem/registro-tempo/${idHorario}`;
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(idHorario)
+    };
+  
+    fetch(url, options)
+  
+  }
   
 
   export const deleteHorario = async (idHorario) => {
