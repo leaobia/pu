@@ -65,7 +65,7 @@ const fetchAPI = async () => {
         label_time_termino.classList.add('fa-clock')
         label_time_termino.classList.add('label_time')
         label_time_termino.for = time_input_termino
-  
+
         const desconto = document.createElement('div')
         desconto.classList.add('termino')
 
@@ -81,15 +81,29 @@ const fetchAPI = async () => {
         label_time_desconto.classList.add('fa-clock')
         label_time_desconto.classList.add('label_time')
         label_time_desconto.for = time_input_desconto
-  
+
+        const liquido = document.createElement('div')
+        liquido.classList.add('liquido')
+
+        const valor_liquido = document.createElement('i')
+        valor_liquido.textContent = tempo.liquido.substring(11, 16);
+
+        const total_geral = document.createElement('div')
+        total_geral.classList.add('total_geral')
+
+        const valor_total = document.createElement('i')
+        valor_total.textContent = tempo.total_geral.substring(11, 16);
+
 
         container_horario.append(container_dados)
-        container_dados.append(data, inicio,termino, desconto)
+        container_dados.append(data, inicio, termino, desconto, liquido, total_geral)
 
         data.append(label_calendar, date_input, valorData)
         inicio.append(label_time_inicio, time_input_inicio, valorInicio)
-        termino.append(label_time_termino,time_input_termino, valorTermino)
-        desconto.append(label_time_desconto,time_input_desconto,valorDesconto)
+        termino.append(label_time_termino, time_input_termino, valorTermino)
+        desconto.append(label_time_desconto, time_input_desconto, valorDesconto)
+        liquido.append(valor_liquido)
+        total_geral.append(valor_total)
 
     })
 }

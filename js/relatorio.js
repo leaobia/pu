@@ -65,9 +65,7 @@ export const criterioForEach = async () => {
         obtido.classList.add('fa-xmark')
 
         const avaliacao = document.createElement('i')
-        avaliacao.classList.add('fa-sharp')
-        avaliacao.classList.add('fa-solid')
-        avaliacao.classList.add('fa-xmark')
+        avaliacao.textContent = criterio.nota_valida_criterio
 
         const container = document.createElement('div')
         container.classList.add('containerInput')
