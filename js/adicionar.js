@@ -5,8 +5,9 @@ import { createHorario } from './apiHorario.js';
 
 const fetchAPI = async () => {
     const horarios = await pesquisarHorario();
-    const registroTempos = horarios;
+    const registroTempos = horarios.reverse();
     console.log(registroTempos.length);
+
     registroTempos.forEach((tempo) => {
 
         const container_horario = document.getElementById('teste')
