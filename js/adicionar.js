@@ -17,7 +17,7 @@ const fetchAPI = async () => {
         const container_dados = document.createElement('div')
         container_dados.classList.add('dados')
         container_dados.id = 'dados'
-        
+
 
         const data = document.createElement('div')
         data.classList.add('data')
@@ -110,22 +110,92 @@ const fetchAPI = async () => {
         button_excluir.classList.add('fa-trash')
         button_excluir.id = 'excluir'
 
+        const modalEditar = document.createElement('div')
+        modalEditar.classList.add('d-none')
+        modalEditar.classList.add('modal')
+
+        const modalEditarContent = document.createElement('div')
+        modalEditar.classList.add('modalContent')
+
+        const btnBack = document.createElement('button')
+        btnBack.classList.add('buttonBack')
+
+        const iconeBack = document.createElement('i')
+        iconeBack.classList.add('fa-solid')
+        iconeBack.classList.add('fa-right-from-bracket')
+
+        const btnSave2 = document.createElement('button')
+        btnSave2.classList.add('botaoEditarSave')
+        btnSave2.classList.add('d-none')
+
+        const textSave = document.createElement('i')
+        textSave.textContent = 'Save'
+
+
+        const editH2 = document.createElement('h2')
+        editH2.textContent = 'Área de edição'
+        editH2.classList.add('editH2')
+
+        const formEditar = document.createElement('form')
+        formEditar.classList.add('d-flex-column-edit')
+
+        const dataDivEdit = document.createElement('div')
+        dataDivEdit.classList.add('divEdit')
+        const time_inicioDivEdit = document.createElement('div')
+        time_inicioDivEdit.classList.add('divEdit')
+        const time_terminoDivEdit = document.createElement('div')
+        time_terminoDivEdit.classList.add('divEdit')
+        const time_descontoDivEdit = document.createElement('div')
+        time_descontoDivEdit.classList.add('divEdit')
+
+        const iDivDate = document.createElement('i')
+        iDivDate.textContent = 'Data:'
+        const iDivTimeInicio = document.createElement('i')
+        iDivTimeInicio.textContent = 'Ínicio:'
+        const iDivTimeTermino = document.createElement('i')
+        iDivTimeTermino.textContent = 'Término'
+        const iDivTimeDesconto = document.createElement('i')
+        iDivTimeDesconto.textContent = 'Desconto:'
+
+        const date_input_edit = document.createElement('input')
+        date_input_edit.type = 'date'
+        date_input_edit.required = true
+
+        const time_input_inicio_edit = document.createElement('input')
+        time_input_inicio_edit.type = 'time'
+        time_input_inicio_edit.required = true
+
+        const time_input_termino_edit = document.createElement('input')
+        time_input_termino_edit.type = 'time'
+        time_input_termino_edit.required = true
+
+        const time_input_desconto_edit = document.createElement('input')
+        time_input_desconto_edit.type = 'time'
+        time_input_desconto_edit.required = true
+
         // event listener botões 
-     
+
         // delet 
 
         const idHorario = tempo.id;
         container_dados.setAttribute('data-id', String(idHorario));
-    
+
         button_excluir.addEventListener('click', (event) => {
             event.preventDefault();
             deleteHorario(idHorario)
             container_dados.classList.add('d-none')
         });
 
+        button_editar.addEventListener('click', (event) => {
+            event.preventDefault();
+            //alert('editar' + time_input_desconto.value)
+            modalEditar.classList.add('d-flex')
+            modalEditar.classList.remove('d-none')
+        })
+
 
         container_horario.append(container_dados)
-        container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes)
+        container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes, modalEditar)
         dados_botoes.append(button_excluir, button_editar)
 
         data.append(label_calendar, date_input, valorData)
@@ -134,6 +204,19 @@ const fetchAPI = async () => {
         desconto.append(label_time_desconto, time_input_desconto, valorDesconto)
         liquido.append(valor_liquido)
         total_geral.append(valor_total)
+
+        modalEditar.append(modalEditarContent)
+        modalEditarContent.append(btnBack, editH2, formEditar, btnSave2,)
+        btnBack.append(iconeBack)
+        btnSave2.append(textSave)
+
+        dados_botoes.append(button_excluir, button_editar)
+
+        formEditar.append(dataDivEdit, time_inicioDivEdit, time_terminoDivEdit, time_descontoDivEdit)
+        dataDivEdit.append(iDivDate, date_input_edit)
+        time_inicioDivEdit.append(iDivTimeInicio, time_input_inicio_edit)
+        time_terminoDivEdit.append(iDivTimeTermino, time_input_termino_edit)
+        time_descontoDivEdit.append(iDivTimeDesconto, time_input_desconto_edit)
 
     })
 }
@@ -268,26 +351,20 @@ const criarDadosHorario = () => {
 
     time_input_termino.addEventListener('change', () => {
         const myInputValue = time_input_termino.value;
-        //time_input_termino_edit.value = myInputValue;
+
         valorTermino.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
 
 
     time_input_inicio.addEventListener('change', () => {
         const myInputValue = time_input_inicio.value;
-        //time_input_inicio_edit.value = myInputValue
         valorInicio.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
-        //console.log(myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5));
     })
 
 
     time_input_desconto.addEventListener('change', () => {
 
         const myInputValue = time_input_desconto.value;
-
-        //time_input_desconto_edit.value = myInputValue
-        //const formatoBack = myInputValue + ':00'
-        //console.log(formatoBack);
 
         valorDesconto.textContent = myInputValue.substring(0, 2) + 'h' + myInputValue.substring(3, 5)
     })
@@ -364,22 +441,6 @@ const criarDadosHorario = () => {
                 somaMinutes -= 60;
             }
 
-            // if (somaMinutes < 10) {
-            //     somaMinutes = `0${somaMinutes}`;
-            //   }
-              
-            //   if (somaHours < 10) {
-            //     somaHours = `0${somaHours}`;
-            //   }
-              
-            //   if (somaMinutesLiquid < 10) {
-            //     somaMinutesLiquid = `0${somaMinutesLiquid}`;
-            //   }
-              
-            //   if (somaHoursLiquid < 10) {
-            //     somaHoursLiquid = `0${somaHoursLiquid}`;
-            //   }
-              
 
             if (somaMinutesLiquid < 0) {
                 somaHoursLiquid--;
@@ -440,8 +501,6 @@ const criarDadosHorario = () => {
 
 export const eventoBotãoAdicionar = () => {
 
-    fetchAPI()
-
     const botao_adc = document.getElementById('adicionar')
 
     botao_adc.addEventListener('click', () => {
@@ -454,4 +513,6 @@ export const eventoBotãoAdicionar = () => {
 
         criarDadosHorario()
     })
+
+    fetchAPI()
 }
