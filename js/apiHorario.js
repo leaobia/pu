@@ -20,3 +20,12 @@ export const pesquisarHorario = async () => {
     fetch(url, options)
   }
   
+
+  export const deleteHorario = async (idHorario) => {
+    const url = `https://usinagem-senai.cyclic.app/v1/projeto-usinagem/registro-tempo/${idHorario}`;
+    const options = {
+      method: 'DELETE'
+    };
+  
+    fetch(url, options)
+  }

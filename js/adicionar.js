@@ -1,6 +1,7 @@
 'use strict'
 import { pesquisarHorario } from './apiHorario.js';
 import { createHorario } from './apiHorario.js';
+import { deleteHorario } from './apiHorario.js';
 
 
 const fetchAPI = async () => {
@@ -10,11 +11,13 @@ const fetchAPI = async () => {
 
     registroTempos.forEach((tempo) => {
 
+
         const container_horario = document.getElementById('teste')
 
         const container_dados = document.createElement('div')
         container_dados.classList.add('dados')
         container_dados.id = 'dados'
+        
 
         const data = document.createElement('div')
         data.classList.add('data')
@@ -106,6 +109,19 @@ const fetchAPI = async () => {
         button_excluir.classList.add('fa-solid')
         button_excluir.classList.add('fa-trash')
         button_excluir.id = 'excluir'
+
+        // event listener botões 
+     
+        // delet 
+
+        const idHorario = tempo.id_tarefa;
+        container_dados.setAttribute('data-id', String(idHorario));
+    
+        button_excluir.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log(idHorario);
+            //container_dados.classList.add('d-none')
+        });
 
 
         container_horario.append(container_dados)
