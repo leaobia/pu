@@ -71,7 +71,7 @@ const fetchAPI = async () => {
         desconto.classList.add('termino')
 
         const valorDesconto = document.createElement('i')
-        valorDesconto.textContent = tempo.duracao_termino;
+        valorDesconto.textContent = tempo.desconto;
 
         const time_input_desconto = document.createElement('input')
         time_input_desconto.type = 'time'
@@ -364,21 +364,22 @@ const criarDadosHorario = () => {
                 somaMinutes -= 60;
             }
 
-            if (somaMinutes < 10) {
-                somaMinutes = `0${somaMinuteApi}`;
-            }
-
-            if (somaHours < 10) {
-                somaHours = `0${somaHourApi}`;
-            }
-
-            if (somaMinutesLiquid < 10) {
-                somaMinutesLiquid = `0${somaMinuteLiquidApi}`;
-            }
-
-            if (somaHoursLiquid < 10) {
-                somaHoursLiquid = `0${somaHourLiquidApi}`;
-            }
+            // if (somaMinutes < 10) {
+            //     somaMinutes = `0${somaMinutes}`;
+            //   }
+              
+            //   if (somaHours < 10) {
+            //     somaHours = `0${somaHours}`;
+            //   }
+              
+            //   if (somaMinutesLiquid < 10) {
+            //     somaMinutesLiquid = `0${somaMinutesLiquid}`;
+            //   }
+              
+            //   if (somaHoursLiquid < 10) {
+            //     somaHoursLiquid = `0${somaHoursLiquid}`;
+            //   }
+              
 
             if (somaMinutesLiquid < 0) {
                 somaHoursLiquid--;
@@ -390,8 +391,8 @@ const criarDadosHorario = () => {
             }
 
 
-            const valorTotal = `${somaHours}h${somaMinutes}`
-            const valorTotalLiquid = `${somaHoursLiquid}h${somaMinutesLiquid}`
+            const valorTotal = `${somaHours}:${somaMinutes}`
+            const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid}`
 
             const valorTotalAPI = `${somaHours}:${somaMinutes}`
             const valorTotalLiquidAPI = `${somaHoursLiquid}:${somaMinutesLiquid}`
@@ -401,8 +402,8 @@ const criarDadosHorario = () => {
                 console.log('Não foi possível processar os valores.');
 
             } else {
-                valor_total.textContent = valorTotal.replace('-', '0')
-                valor_liquido.textContent = valorTotalLiquid.replace('-', '0')
+                valor_total.textContent = valorTotal.replace('-', ' ')
+                valor_liquido.textContent = valorTotalLiquid.replace('-', ' ')
 
                 const horario = {
                     "data_projeto": `${date_input.value}`,
