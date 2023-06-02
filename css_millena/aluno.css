@@ -453,6 +453,10 @@ label{
   .dados:hover{
       width: 100%;
   }
+
+  .dados:hover .dados_botoes2{
+      display: flex;
+  }
   .dados:hover .criterio-button{
       display: flex;
   }

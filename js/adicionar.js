@@ -94,9 +94,25 @@ const fetchAPI = async () => {
         const valor_total = document.createElement('i')
         valor_total.textContent = tempo.total_geral.substring(11, 16);
 
+        const dados_botoes = document.createElement('div')
+        dados_botoes.classList.add('dados_botoes')
+        dados_botoes.classList.add('dados_botoes2')
+        dados_botoes.classList.add('d-none')
+    
+        const button_editar = document.createElement('button')
+        button_editar.classList.add('far')
+        button_editar.classList.add('fa-edit')
+        button_editar.id = 'editar'
+    
+        const button_excluir = document.createElement('button')
+        button_excluir.classList.add('fa-solid')
+        button_excluir.classList.add('fa-trash')
+        button_excluir.id = 'excluir'
+
 
         container_horario.append(container_dados)
-        container_dados.append(data, inicio, termino, desconto, liquido, total_geral)
+        container_dados.append(data, inicio, termino, desconto, liquido, total_geral, dados_botoes)
+        dados_botoes.append(button_excluir, button_editar)
 
         data.append(label_calendar, date_input, valorData)
         inicio.append(label_time_inicio, time_input_inicio, valorInicio)
