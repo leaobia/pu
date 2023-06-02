@@ -333,8 +333,14 @@ const criarDadosHorario = () => {
             let somaHours = (hour2 - hour1);
             let somaMinutes = (minute2 - minute1);
 
+            let somaHourApi = somaHours
+            let somaMinuteApi = somaMinutes
+
             let somaHoursLiquid = somaHours - hour3;
             let somaMinutesLiquid = somaMinutes - minute3;
+
+            let somaHourLiquidApi = somaHours
+            let somaMinuteLiquidApi = somaMinutes
 
             if (somaMinutes >= 60) {
                 somaHours++;
@@ -342,11 +348,19 @@ const criarDadosHorario = () => {
             }
 
             if (somaMinutes < 10) {
-                somaMinutes = 0 + somaMinutes;
+                somaMinutes = `0${somaMinuteApi}`;
             }
 
             if (somaHours < 10) {
-                somaHours = 0 + somaHours;
+                somaHours = `0${somaHourApi}`;
+            }
+
+            if (somaMinutesLiquid < 10) {
+                somaMinutesLiquid = `0${somaMinuteLiquidApi}`;
+            }
+
+            if (somaHoursLiquid < 10) {
+                somaHoursLiquid = `0${somaHourLiquidApi}`;
             }
 
             if (somaMinutesLiquid < 0) {
@@ -378,8 +392,10 @@ const criarDadosHorario = () => {
                     "duracao_inicio": `${time_input_inicio.value.substring(0, 2) + ':' + time_input_inicio.value.substring(3, 5)}`,
                     "duracao_termino": `${time_input_termino.value.substring(0, 2) + ':' + time_input_termino.value.substring(3, 5)}`,
                     "desconto": `${time_input_desconto.value.substring(0, 2) + ':' + time_input_desconto.value.substring(3, 5)}`,
-                    "liquido": `${valorTotalLiquidAPI}`,
-                    "total_geral": `${valorTotalAPI}`
+                    "liquido": `${valorTotalLiquidAPI.replace('-', '')}`,
+                    "total_geral": `${valorTotalAPI.replace('-', '')}`,
+                    "id_tarefa": 3,
+                    "id_aluno": 1
                 }
                 console.log(horario);
                 createHorario(horario)
