@@ -114,13 +114,13 @@ const fetchAPI = async () => {
      
         // delet 
 
-        const idHorario = tempo.id_tarefa;
+        const idHorario = tempo.id;
         container_dados.setAttribute('data-id', String(idHorario));
     
         button_excluir.addEventListener('click', (event) => {
             event.preventDefault();
-            console.log(idHorario);
-            //container_dados.classList.add('d-none')
+            deleteHorario(idHorario)
+            container_dados.classList.add('d-none')
         });
 
 
