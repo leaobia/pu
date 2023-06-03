@@ -27,12 +27,12 @@ export const criterioForEach = async () => {
         const descricaoCriterio = document.createElement('i');
         descricaoCriterio.classList.add('descricaoCriterio');
         if (criterio.descricao_criterio && criterio.descricao_criterio !== "") {
-          descricaoCriterio.textContent = criterio.descricao_criterio.slice(0, 15) + "...";
+            descricaoCriterio.textContent = criterio.descricao_criterio.slice(0, 15) + "...";
         } else {
-          descricaoCriterio.textContent = 'Este critério não possui uma descrição. Caso possua alguma dúvida, solicite ajuda ao seu professor'.slice(0, 15) + "...";
+            descricaoCriterio.textContent = 'Este critério não possui uma descrição. Caso possua alguma dúvida, solicite ajuda ao seu professor'.slice(0, 15) + "...";
         }
-        
-       
+
+
 
         const desejadoContainer = document.createElement('div')
         desejadoContainer.classList.add('desejadoContainer')
@@ -59,15 +59,15 @@ export const criterioForEach = async () => {
 
         if (criterio.margem_erro.resultados != null) {
 
-            if( criterio.margem_erro.resultados[0] != null){
+            if (criterio.margem_erro.resultados[0] != null) {
                 margemMinimo.textContent = criterio.margem_erro.resultados[0].descricao;
             }
 
-            if( criterio.margem_erro.resultados[1] != null){
+            if (criterio.margem_erro.resultados[1] != null) {
                 margemMaximo.textContent = criterio.margem_erro.resultados[1].descricao;
             }
-           
-            
+
+
         }
 
 
@@ -82,7 +82,7 @@ export const criterioForEach = async () => {
         avaliacao.classList.add('fa-solid')
         avaliacao.classList.add('fa-xmark')
 
-        
+
 
         const container = document.createElement('div')
         container.classList.add('containerInput')
@@ -139,10 +139,10 @@ export const criterioForEach = async () => {
         textDesc.classList.add('textDesc')
         if (criterio.descricao_criterio && criterio.descricao_criterio !== "") {
             textDesc.textContent = criterio.descricao_criterio
-          } else {
+        } else {
             textDesc.textContent = 'Este critério não possui uma descrição. Caso possua alguma dúvida, solicite ajuda ao seu professor';
-          }
-        
+        }
+
         textDesc.disabled = true
 
         const showDesejadoContainer = document.createElement('div')
@@ -179,7 +179,7 @@ export const criterioForEach = async () => {
         opçoes.name = 'S/N'
 
         const simOption = document.createElement('option')
-        simOption.value = 'sim'
+        simOption.value = 1
         simOption.textContent = 'sim'
 
         const noOption = document.createElement('option')
@@ -187,7 +187,7 @@ export const criterioForEach = async () => {
         noOption.textContent = ''
 
         const naoOption = document.createElement('option')
-        naoOption.value = 'não'
+        naoOption.value = 2
         naoOption.textContent = 'não'
 
         const obtidoContainer = document.createElement('div')
@@ -238,25 +238,45 @@ export const criterioForEach = async () => {
 
         const updateMudancas = [opçoes, inputObtido]
 
+        let mudancaInput;
+        let mudancaSelect;
+
         updateMudancas.forEach((mudanca) => {
             mudanca.addEventListener('change', function () {
-              if (mudanca.tagName === 'INPUT') {
+                if (mudanca.tagName === 'INPUT') {
+                    mudancaInput = mudanca.value;
+                } else if (mudanca.tagName === 'SELECT') {
 
-                console.log('Mudança em um input:', mudanca);
-              } else if (mudanca.tagName === 'SELECT') {
-               
-                console.log('Mudança em um select:', mudanca);
-              } else {
-                
-                console.log('Mudança em outro tipo de elemento:', mudanca);
-              }
-              btnSave2.classList.add('d-flex')
-              btnSave2.classList.remove('d-none')
+                    mudancaSelect = mudanca.value
+                } else {
+                    console.log('Mudança em outro tipo de elemento:', mudanca);
+                }
+
+                btnSave2.classList.add('d-flex');
+                btnSave2.classList.remove('d-none');
             });
-          });
-          
+        });
+        btnSave2.addEventListener('click', (event) => {
+            event.preventDefault();
 
+            // const novoValor1 = mudancaInput;
+            const novoValor2 = mudancaSelect;
 
+            console.log(novoValor2);
+
+            const idCriterio = criterio.id;
+            //const notaValidaCriterio = criterio.nota_valida_criterio;
+            console.log(idCriterio);
+
+           // const atualizacao = {
+              //  nota_valida_criterio: novoValor2
+           // };
+
+            updateCriterio(idCriterio, 'nota_valida_criterio', novoValor2);
+
+                modalEditar.classList.remove('d-flex');
+                modalEditar.classList.add('d-none');
+        });
 
     });
 }

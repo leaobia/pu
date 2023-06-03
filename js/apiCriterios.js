@@ -7,17 +7,23 @@ export const pesquisarCriterios = async () => {
     return data.criterios;
   }
 
-  export const updateCriterio = async (idCriterio) => {
+  export const updateCriterio = async (idCriterio, atributo, valor) => {
     const url = `https://usinagem-senai.cyclic.app/v1/projeto-usinagem/criterio/${idCriterio}`;
     const options = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(idCriterio)
+      body: JSON.stringify({
+        [atributo]: valor
+      })
     };
   
-    fetch(url, options)
+    const response = await fetch(url, options);
+    const responseData = await response.json();
+ 
   
-  }
+    return responseData;
+  };
+  
   
