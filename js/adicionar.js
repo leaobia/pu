@@ -6,7 +6,7 @@ import { deleteHorario } from './apiHorario.js';
 
 const fetchAPI = async () => {
     const horarios = await pesquisarHorario();
-    const registroTempos = horarios.reverse();
+    const registroTempos = horarios;
     console.log(registroTempos.length);
 
     registroTempos.forEach((tempo) => {
@@ -191,6 +191,13 @@ const fetchAPI = async () => {
             //alert('editar' + time_input_desconto.value)
             modalEditar.classList.add('d-flex')
             modalEditar.classList.remove('d-none')
+        })
+
+        btnBack.addEventListener('click', (event) => {
+            event.preventDefault();
+            //alert('editar' + time_input_desconto.value)
+            modalEditar.classList.remove('d-flex')
+            modalEditar.classList.add('d-none')
         })
 
 
@@ -424,39 +431,44 @@ const criarDadosHorario = () => {
 
         } else {
 
-            let somaHours = (hour2 - hour1);
-            let somaMinutes = (minute2 - minute1);
+            
+            const [hour1, minute1] = hora1.split(":").map(Number);
+            const [hour2, minute2] = hora2.split(":").map(Number);
+            const [hour3, minute3] = hora3.split(":").map(Number);
 
-            let somaHourApi = somaHours
-            let somaMinuteApi = somaMinutes
+           
+            let somaHours = hour2 - hour1;
+            let somaMinutes = minute2 - minute1;
 
+            
+            if (somaMinutes < 0) {
+                somaHours--;
+                somaMinutes += 60; 
+            }
+
+            
             let somaHoursLiquid = somaHours - hour3;
             let somaMinutesLiquid = somaMinutes - minute3;
 
-            let somaHourLiquidApi = somaHours
-            let somaMinuteLiquidApi = somaMinutes
-
-            if (somaMinutes >= 60) {
-                somaHours++;
-                somaMinutes -= 60;
-            }
-
-
+            
             if (somaMinutesLiquid < 0) {
-                somaHoursLiquid--;
-                somaMinutesLiquid += 60;
+                somaHoursLiquid--; 
+                somaMinutesLiquid += 60; 
             }
 
+            
             if (somaHoursLiquid < 0) {
-                somaHoursLiquid += 24;
+                somaHoursLiquid += 24; 
             }
 
+            
+            const valorTotal = `${somaHours}:${somaMinutes.toString().padStart(2, "0")}`;
+            const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid.toString().padStart(2, "0")}`;
 
-            const valorTotal = `${somaHours}:${somaMinutes}`
-            const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid}`
+            // Exibindo os resultados
+            console.log("Valor Total:", valorTotal);
+            console.log("Valor Total Liquid:", valorTotalLiquid);
 
-            const valorTotalAPI = `${somaHours}:${somaMinutes}`
-            const valorTotalLiquidAPI = `${somaHoursLiquid}:${somaMinutesLiquid}`
 
 
             if (valorTotal == '0hNaN' || valorTotalLiquid == '0hNaN') {
@@ -471,8 +483,8 @@ const criarDadosHorario = () => {
                     "duracao_inicio": `${time_input_inicio.value.substring(0, 2) + ':' + time_input_inicio.value.substring(3, 5)}`,
                     "duracao_termino": `${time_input_termino.value.substring(0, 2) + ':' + time_input_termino.value.substring(3, 5)}`,
                     "desconto": `${time_input_desconto.value.substring(0, 2) + ':' + time_input_desconto.value.substring(3, 5)}`,
-                    "liquido": `${valorTotalLiquidAPI.replace('-', '')}`,
-                    "total_geral": `${valorTotalAPI.replace('-', '')}`,
+                    "liquido": `${valorTotalLiquid.replace('-', '')}`,
+                    "total_geral": `${valorTotal.replace('-', '')}`,
                     "id_tarefa": 3,
                     "id_aluno": 1
                 }
@@ -496,7 +508,6 @@ const criarDadosHorario = () => {
         time_input_desconto.disabled = true;
         date_input.disabled = true;
     })
-
 }
 
 export const eventoBotãoAdicionar = () => {
