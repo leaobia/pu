@@ -275,7 +275,7 @@ export const criterioForEach = async () => {
                 }
             }else{
                 const criterioAPI = {
-                    "id": idCriterio,
+                    "id": criterio.id,
                     "descricao_criterio": `${criterio.descricao_criterio}`,
                     "nota_valida_criterio": `${novoValor2}`,
                     "resultado_desejado_criterio": `${criterio.resultado_desejado_criterio}`,
