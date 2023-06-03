@@ -23,9 +23,15 @@ export const criterioForEach = async () => {
         container_dados.classList.add('criteriosDados')
         container_dados.id = 'dados'
 
-        const descricaoCriterio = document.createElement('i')
-        descricaoCriterio.classList.add('descricaoCriterio')
-        descricaoCriterio.textContent = criterio.descricao_criterio.slice(0, 15) + "...";
+        const descricaoCriterio = document.createElement('i');
+        descricaoCriterio.classList.add('descricaoCriterio');
+        if (criterio.descricao_criterio && criterio.descricao_criterio !== "") {
+          descricaoCriterio.textContent = criterio.descricao_criterio.slice(0, 15) + "...";
+        } else {
+          descricaoCriterio.textContent = 'Este critério não possui uma descrição. Caso possua alguma dúvida, solicite ajuda ao seu professor'.slice(0, 15) + "...";
+        }
+        
+       
 
         const desejadoContainer = document.createElement('div')
         desejadoContainer.classList.add('desejadoContainer')
@@ -49,14 +55,20 @@ export const criterioForEach = async () => {
         const margemMinimo2 = document.createElement('span')
         const margemMaximo2 = document.createElement('span')
 
-        console.log(criterio.margem_erro.message);
 
-        if (criterio.margem_erro.message != null)
-            margemMinimo.textContent = '-' + criterio.margem_erro.message;
-        margemMinimo2.textContent = '-' + criterio.margem_erro.message;
-        if (criterio.margem_erro.status != null)
-            margemMaximo.textContent = '+' + criterio.margem_erro.status;
-        margemMaximo2.textContent = '+' + criterio.margem_erro.status;
+        if (criterio.margem_erro.resultados != null) {
+
+            if( criterio.margem_erro.resultados[0] != null){
+                margemMinimo.textContent = criterio.margem_erro.resultados[0].descricao;
+            }
+
+            if( criterio.margem_erro.resultados[1] != null){
+                margemMaximo.textContent = criterio.margem_erro.resultados[1].descricao;
+            }
+           
+            
+        }
+
 
 
         const obtido = document.createElement('i')
