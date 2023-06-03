@@ -2,6 +2,7 @@
 import { pesquisarHorario } from './apiHorario.js';
 import { createHorario } from './apiHorario.js';
 import { deleteHorario } from './apiHorario.js';
+import { updateHorario } from './apiHorario.js';
 
 
 const fetchAPI = async () => {
@@ -159,6 +160,7 @@ const fetchAPI = async () => {
 
         const date_input_edit = document.createElement('input')
         date_input_edit.type = 'date'
+        date_input_edit.value = date_input.value
         date_input_edit.required = true
 
         const time_input_inicio_edit = document.createElement('input')
@@ -173,6 +175,11 @@ const fetchAPI = async () => {
         time_input_desconto_edit.type = 'time'
         time_input_desconto_edit.required = true
 
+        const liquidoCalc = document.createElement('i')
+        liquidoCalc.textContent = "Líquido:"
+        const totalCalc = document.createElement('i')
+        totalCalc.textContent = "Total Geral:"
+
         // event listener botões 
 
         // delet 
@@ -186,11 +193,82 @@ const fetchAPI = async () => {
             container_dados.classList.add('d-none')
         });
 
+        // update
+
         button_editar.addEventListener('click', (event) => {
             event.preventDefault();
             //alert('editar' + time_input_desconto.value)
             modalEditar.classList.add('d-flex')
             modalEditar.classList.remove('d-none')
+
+
+            const hora1 = time_input_inicio_edit.value;
+            const hora2 = time_input_termino_edit.value;
+            const hora3 = time_input_desconto_edit.value;
+    
+            const [hour1, minute1] = hora1.split(":").map(Number);
+            const [hour2, minute2] = hora2.split(":").map(Number);
+            const [hour3, minute3] = hora3.split(":").map(Number);
+    
+            if (hour2 < hour1) {
+    
+                button_editar.classList.add('d-none')
+                button_editar.classList.remove('d-flex')
+    
+            } else {
+    
+                const [hour1, minute1] = hora1.split(":").map(Number);
+                const [hour2, minute2] = hora2.split(":").map(Number);
+                const [hour3, minute3] = hora3.split(":").map(Number);
+    
+               
+                let somaHours = hour2 - hour1;
+                let somaMinutes = minute2 - minute1;
+    
+                
+                if (somaMinutes < 0) {
+                    somaHours--;
+                    somaMinutes += 60; 
+                }
+    
+                
+                let somaHoursLiquid = somaHours - hour3;
+                let somaMinutesLiquid = somaMinutes - minute3;
+    
+                
+                if (somaMinutesLiquid < 0) {
+                    somaHoursLiquid--; 
+                    somaMinutesLiquid += 60; 
+                }
+    
+                
+                if (somaHoursLiquid < 0) {
+                    somaHoursLiquid += 24; 
+                }
+    
+                
+                const valorTotal = `${somaHours}:${somaMinutes.toString().padStart(2, "0")}`;
+                const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid.toString().padStart(2, "0")}`;
+    
+                // Exibindo os resultados
+                console.log("Valor Total:", valorTotal);
+                console.log("Valor Total Liquid:", valorTotalLiquid);
+            }    
+             
+            const horarioUpdate = {
+                "id": `${tempo.id}`,
+                "data_projeto": `${date_input.value}`,
+                "duracao_inicio": `${time_input_inicio_edit.value.substring(0, 2) + ':' + time_input_inicio_edit.value.substring(3, 5)}`,
+                "duracao_termino": `${time_input_termino_edit.value.substring(0, 2) + ':' + time_input_termino_edit.value.substring(3, 5)}`,
+                "desconto": `${time_input_desconto_edit.value.substring(0, 2) + ':' + time_input_desconto_edit.value.substring(3, 5)}`,
+                //"liquido": `${}`,
+                //"total_geral": `${}`,
+                "id_tarefa": 3,
+                "id_aluno": 1
+            }
+           // console.log(horarioUpdate);
+            //updateHorario(horario)
+    
         })
 
         btnBack.addEventListener('click', (event) => {
@@ -219,7 +297,7 @@ const fetchAPI = async () => {
 
         dados_botoes.append(button_excluir, button_editar)
 
-        formEditar.append(dataDivEdit, time_inicioDivEdit, time_terminoDivEdit, time_descontoDivEdit)
+        formEditar.append(dataDivEdit, time_inicioDivEdit, time_terminoDivEdit, time_descontoDivEdit, liquidoCalc, totalCalc)
         dataDivEdit.append(iDivDate, date_input_edit)
         time_inicioDivEdit.append(iDivTimeInicio, time_input_inicio_edit)
         time_terminoDivEdit.append(iDivTimeTermino, time_input_termino_edit)
