@@ -77,7 +77,11 @@ export const criterioForEach = async () => {
         obtido.classList.add('fa-xmark')
 
         const avaliacao = document.createElement('i')
-        avaliacao.textContent = criterio.nota_valida_criterio
+        avaliacao.classList.add('fa-sharp')
+        avaliacao.classList.add('fa-solid')
+        avaliacao.classList.add('fa-xmark')
+
+        
 
         const container = document.createElement('div')
         container.classList.add('containerInput')
@@ -132,7 +136,12 @@ export const criterioForEach = async () => {
 
         const textDesc = document.createElement('textarea')
         textDesc.classList.add('textDesc')
-        textDesc.textContent = criterio.descricao_criterio
+        if (criterio.descricao_criterio && criterio.descricao_criterio !== "") {
+            textDesc.textContent = criterio.descricao_criterio
+          } else {
+            textDesc.textContent = 'Este critério não possui uma descrição. Caso possua alguma dúvida, solicite ajuda ao seu professor';
+          }
+        
         textDesc.disabled = true
 
         const showDesejadoContainer = document.createElement('div')

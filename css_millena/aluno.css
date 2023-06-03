@@ -530,6 +530,12 @@ label{
     justify-content: center;
     gap: 2vw;
 }
+
+.textDesc{
+    height: auto;
+    padding-top: 1%;
+    padding-bottom: 5%;
+}
 @media (max-width: 999px) {
 
     /* AREA DO ALUNO */
