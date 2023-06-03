@@ -257,18 +257,29 @@ export const criterioForEach = async () => {
 
             // const novoValor1 = mudancaInput;
             const novoValor2 = mudancaSelect;
-
             console.log(novoValor2);
 
             const idCriterio = criterio.id;
+
             //const notaValidaCriterio = criterio.nota_valida_criterio;
             console.log(idCriterio);
+
+            if(criterio.margem_erro.resultados != null){
+                console.log('não é nulo o json resultados');
+                if(criterio.margem_erro.resultados.length == 1){
+                    console.log('apenas 1');
+                }else{
+                    console.log('apenas 3');
+                }
+            }else{
+                console.log('é nulo');
+            }
 
            // const atualizacao = {
               //  nota_valida_criterio: novoValor2
            // };
 
-            updateCriterio(idCriterio, 'nota_valida_criterio', novoValor2);
+           // updateCriterio(idCriterio, 'nota_valida_criterio', novoValor2);
 
                 modalEditar.classList.remove('d-flex');
                 modalEditar.classList.add('d-none');
