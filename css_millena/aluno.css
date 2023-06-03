@@ -134,7 +134,7 @@ nav {
     justify-content: space-between;
 }
 
-.adicionar_editar_deletar{
+.adicionar_editar_deletar {
     display: flex;
     gap: 2%;
 }
@@ -204,67 +204,73 @@ nav {
 
 
 
-#label_calendar{
+#label_calendar {
     z-index: 1;
 }
-label{
+
+label {
     cursor: pointer;
 }
 
-.date_input{
-    opacity: 0;
-    width: 3px;
-    height:3px;
-}
-
-
-.time_input_inicio, .time_input_termino, .time_input_desconto{
+.date_input {
     opacity: 0;
     width: 3px;
     height: 3px;
 }
 
- .termino, .desconto{
+
+.time_input_inicio,
+.time_input_termino,
+.time_input_desconto {
+    opacity: 0;
+    width: 3px;
+    height: 3px;
+}
+
+.termino,
+.desconto {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
 }
 
-.inicio{
+.inicio {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
 }
-.dados{
+
+.dados {
     display: flex;
     justify-content: space-between;
     font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
 }
+
 /* .time_input_termino, .time_input_desconto{
     margin-right: 20px;
 } */
-.dados:hover{
+.dados:hover {
     background-color: #ffff;
 }
 
-.data{
+.data {
     display: flex;
     align-items: center;
 }
 
 
 
-.d-none{
+.d-none {
     display: none;
 }
 
-.d-flex{
+.d-flex {
     display: flex;
 }
 
-.d-flex-column-edit{
+.d-flex-column-edit {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -273,7 +279,7 @@ label{
     gap: 5vh;
 }
 
-.dados_botoes{
+.dados_botoes {
 
     gap: 4px;
     position: absolute;
@@ -281,14 +287,14 @@ label{
     right: 0;
 }
 
-.dados_botoes button{
-        color: white;
-        background-color: #3084B4;
-        padding: 10px;
-        border-radius: 50%;
-        border: 0;
-        cursor: pointer;
-        font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
+.dados_botoes button {
+    color: white;
+    background-color: #3084B4;
+    padding: 10px;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    font-size: clamp(0.8125rem, -0.0469rem + 2.75vw, 1.5rem);
 }
 
 
@@ -300,15 +306,15 @@ label{
     height: 100%;
     background-color: rgba(255, 255, 255, 0.8);
     z-index: -1;
-  }
+}
 
 
-  .modalContent {
+.modalContent {
     width: 40%;
     /* max-width: 600px;
     margin: 38vh auto;
     padding: 20px; */
-    z-index: 1; 
+    z-index: 1;
     background-color: #3084B4;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     opacity: .8;
@@ -316,12 +322,13 @@ label{
 
     padding-left: 4vw;
     padding-top: 1vh;
-  }
+}
 
-  .editH2{
+.editH2 {
     margin-top: 8vh;
-  }
-  .buttonBack{
+}
+
+.buttonBack {
     background-color: #DA251C;
     border: 1px transparent;
     border-radius: 20px;
@@ -332,38 +339,39 @@ label{
     cursor: pointer;
     transition: shadow .2s;
 }
-  .buttonBack i{
 
-        color: #FFFF;
-        font-size: 1rem;
-    
+.buttonBack i {
+
+    color: #FFFF;
+    font-size: 1rem;
+
 }
 
-.divEdit{
+.divEdit {
     display: flex;
     justify-content: space-between;
     width: 33vw;
 }
 
-.botaoEditarSave{
-   padding: 2%;
-   width: 40%;
-   margin-left: 10vw;
-   margin-top: 10vh;
-   cursor: pointer;
+.botaoEditarSave {
+    padding: 2%;
+    width: 40%;
+    margin-left: 10vw;
+    margin-top: 10vh;
+    cursor: pointer;
 }
 
-.botaoEditarSave i{
-   font-size: 1rem;
-   text-transform: lowercase;
-   color: #666666;
+.botaoEditarSave i {
+    font-size: 1rem;
+    text-transform: lowercase;
+    color: #666666;
 }
 
-.descricaoCriterio{
+.descricaoCriterio {
     font-size: clamp(0.6rem, 0.1rem + 1.6vw, 1rem);
 }
 
-.criteriosDados{
+.criteriosDados {
     color: black;
 }
 
@@ -378,9 +386,9 @@ label{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
+}
 
-.my-checkbox{
+.my-checkbox {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -393,29 +401,29 @@ label{
     top: 0;
     left: 0;
     height: 28px;
-    width:  28px;
+    width: 28px;
     background-color: white;
     border: 2px solid black;
     border-radius: 2px;
-  }
+}
 
 
-  .containerInput input:checked ~ .checkmark {
-   background-color:  black;
-  }
+.containerInput input:checked~.checkmark {
+    background-color: black;
+}
 
-  .checkmark:after {
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
+}
 
-  .containerInput input:checked ~ .checkmark:after {
+.containerInput input:checked~.checkmark:after {
     display: block;
-  }
+}
 
 
-  .containerInput .checkmark:after {
+.containerInput .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
@@ -425,44 +433,45 @@ label{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+}
 
-  .desejadoContainer{
-      display: flex;
-      gap: 10%;
-  }
+.desejadoContainer {
+    display: flex;
+    gap: 10%;
+}
 
-  .margemErroContainer{
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      font-size: 10px;
-      padding-bottom: 4px;
-  }
+.margemErroContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 10px;
+    padding-bottom: 4px;
+}
 
-  .margemErroContainer span{
-      height: 15px;
-  }
+.margemErroContainer span {
+    height: 15px;
+}
 
-  .criterio-button{
+.criterio-button {
     position: absolute;
     float: left;
     right: 42;
     display: none;
-  }
+}
 
-  .dados:hover{
-      width: 100%;
-  }
+.dados:hover {
+    width: 100%;
+}
 
-  .dados:hover .dados_botoes2{
-      display: flex;
-  }
-  .dados:hover .criterio-button{
-      display: flex;
-  }
+.dados:hover .dados_botoes2 {
+    display: flex;
+}
 
-  .criterios {
+.dados:hover .criterio-button {
+    display: flex;
+}
+
+.criterios {
     display: flex;
     justify-content: space-between;
     font-family: 'Montserrat';
@@ -475,22 +484,22 @@ label{
     border-bottom: 2px solid rgba(48, 132, 180, 0.5);
 }
 
-.contentEditRelatorio{
+.contentEditRelatorio {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 30vw;
 }
 
-.contentShowDesc{
+.contentShowDesc {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-top: 3vh;
-    gap:3vh;
+    gap: 3vh;
 }
 
-.textDesc{
+.textDesc {
     resize: none;
     width: 100%;
     background-color: white;
@@ -502,42 +511,42 @@ label{
     color: black;
 }
 
-.showH3{
+.showH3 {
     font-size: 1rem;
 }
 
-.showDesejadoContainer{
+.showDesejadoContainer {
     display: flex;
     gap: 2vw;
 }
 
-.avaliacaoObtidoContainer{
+.avaliacaoObtidoContainer {
     width: 35vw;
     gap: 4vw;
     display: flex;
 }
 
-.avaliacaoContainer{
+.avaliacaoContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2vw;
 }
 
-.obtidoContainer{
+.obtidoContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2vw;
 }
 
-.textDesc{
+.textDesc {
     height: auto;
     padding-top: 1%;
     padding-bottom: 5%;
 }
 
-.desejaEnviar{
+.desejaEnviar {
     height: auto;
     padding: 10px;
     border-radius: 8px;
@@ -546,18 +555,20 @@ label{
     align-items: center;
     background-color: #074A71;
 }
-.desejaEnviarButtons{
+
+.desejaEnviarButtons {
     display: flex;
     align-items: center;
     width: auto;
     gap: 2vw;
 }
 
-.desejaEnviarButtons button{
+.desejaEnviarButtons button {
     padding: 0px 20px 0px 20px;
     cursor: pointer;
-    
+
 }
+
 @media (max-width: 999px) {
 
     /* AREA DO ALUNO */
@@ -569,6 +580,26 @@ label{
         grid-template-columns: repeat(1, 1fr);
     }
 
+}
+
+body {
+    overflow-y: auto;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #3084B4;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #074A71;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #074A71;
 }
 
 @media (max-width: 640px) {
@@ -590,43 +621,45 @@ label{
         width: 270px;
         height: 270px;
     }
+
     .modalContent {
         width: 100%;
-      }
+    }
 
-      .divEdit{
+    .divEdit {
         width: 90vw;
     }
 
-    .desejaEnviar{
+    .desejaEnviar {
         margin-left: 20vw;
         width: 50vw;
     }
 
-    .botaoEditarSave{
+    .botaoEditarSave {
         margin-left: 38vw;
-     }
+    }
 
-     .checkmark {
+    .checkmark {
         height: 20px;
-        width:  20px;
-      }
+        width: 20px;
+    }
 
-      .containerInput .checkmark:after {
+    .containerInput .checkmark:after {
         left: 5px;
         top: 0px;
         width: 4px;
         height: 10px;
-      }
+    }
 
-      .criterio-button{
+    .criterio-button {
         right: 5;
-      }
+    }
 
-      .contentEditRelatorio{
+    .contentEditRelatorio {
         width: 90vw;
     }
-    .textDesc{
-      padding: 2%;
+
+    .textDesc {
+        padding: 2%;
     }
 }
