@@ -181,8 +181,13 @@ const fetchAPI = async () => {
         totalCalc.textContent = "Total Geral:"
 
         const desejaEnviar = document.createElement('div')
+        const questionEnviar = document.createElement('i')
+        questionEnviar.textContent = 'Deseja mesmo enviar?'
         desejaEnviar.classList.add('desejaEnviar')
         desejaEnviar.classList.add('d-none')
+
+        const desejaEnviarButtons = document.createElement('div')
+        desejaEnviarButtons.classList.add('desejaEnviarButtons')
 
         const desejaEnviarSIM = document.createElement('button')
         desejaEnviarSIM.textContent = "Sim"
@@ -280,6 +285,9 @@ const fetchAPI = async () => {
 
                     desejaEnviar.classList.add('d-flex')
                     desejaEnviar.classList.remove('d-none')
+
+                    btnSave2.classList.add('d-none')
+                    btnSave2.classList.remove('d-flex')
                 }
             })
 
@@ -299,6 +307,16 @@ const fetchAPI = async () => {
                 }
                  console.log(horarioUpdate);
                 updateHorario(tempo.id, horarioUpdate)
+
+                modalEditar.classList.add('d-none')
+                modalEditar.classList.remove('d-flex')
+
+            })
+            desejaEnviarNao.addEventListener('click', (event) => {
+               
+                event.preventDefault();
+                desejaEnviar.classList.remove('d-flex')
+                desejaEnviar.classList.add('d-none')
 
             })
         })
@@ -329,7 +347,7 @@ const fetchAPI = async () => {
         total_geral.append(valor_total)
 
         modalEditar.append(modalEditarContent)
-        modalEditarContent.append(btnBack, editH2, formEditar, btnSave2,)
+        modalEditarContent.append(btnBack, editH2, formEditar, btnSave2)
         btnBack.append(iconeBack)
         btnSave2.append(textSave)
 
@@ -339,7 +357,8 @@ const fetchAPI = async () => {
         dataDivEdit.append(iDivDate, date_input_edit)
         time_inicioDivEdit.append(iDivTimeInicio, time_input_inicio_edit)
         time_terminoDivEdit.append(iDivTimeTermino, time_input_termino_edit)
-        desejaEnviar.append(desejaEnviarSIM, desejaEnviarNao)
+        desejaEnviar.append(questionEnviar, desejaEnviarButtons)
+        desejaEnviarButtons.append(desejaEnviarSIM, desejaEnviarNao)
         time_descontoDivEdit.append(iDivTimeDesconto, time_input_desconto_edit)
 
     })
