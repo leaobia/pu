@@ -1,11 +1,7 @@
 'use strict'
 
-//import { criterioJSON } from './relatoriojson.js'
 import { pesquisarCriterios } from './apiCriterios.js'
 import { updateCriterio } from './apiCriterios.js'
-
-
-//const criterios = criterioJSON.criterios;
 
 export const criterioForEach = async () => {
 
@@ -13,7 +9,7 @@ export const criterioForEach = async () => {
 
 
     const registroCriterios = criterios;
-    console.log(registroCriterios);
+    //console.log(registroCriterios);
 
     registroCriterios.forEach((criterio) => {
 
