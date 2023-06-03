@@ -6,7 +6,7 @@ import { deleteHorario } from './apiHorario.js';
 
 const fetchAPI = async () => {
     const horarios = await pesquisarHorario();
-    const registroTempos = horarios;
+    const registroTempos = horarios.reverse();
     console.log(registroTempos.length);
 
     registroTempos.forEach((tempo) => {
@@ -495,6 +495,7 @@ const criarDadosHorario = () => {
             const btc_save = document.getElementById('salvar')
             btc_save.classList.add('d-none')
             btc_save.classList.remove('d-flex')
+
 
         }
 
