@@ -288,7 +288,7 @@ const fetchAPI = async () => {
                 event.preventDefault();
                 const horarioUpdate = {
                     "id": `${tempo.id}`,
-                    "data_projeto": `${date_input.value}`,
+                    "data_projeto": `${date_input_edit.value}`,
                     "duracao_inicio": `${time_input_inicio_edit.value.substring(0, 2) + ':' + time_input_inicio_edit.value.substring(3, 5)}`,
                     "duracao_termino": `${time_input_termino_edit.value.substring(0, 2) + ':' + time_input_termino_edit.value.substring(3, 5)}`,
                     "desconto": `${time_input_desconto_edit.value.substring(0, 2) + ':' + time_input_desconto_edit.value.substring(3, 5)}`,
@@ -297,8 +297,8 @@ const fetchAPI = async () => {
                     "id_tarefa": 3,
                     "id_aluno": 1
                 }
-                // console.log(horarioUpdate);
-                updateHorario(horarioUpdate)
+                 console.log(horarioUpdate);
+                updateHorario(tempo.id, horarioUpdate)
 
             })
         })
