@@ -195,66 +195,79 @@ const fetchAPI = async () => {
 
         // update
 
+        const inputsEdit = [date_input_edit, time_input_termino_edit, time_input_inicio_edit, time_input_desconto_edit];
         button_editar.addEventListener('click', (event) => {
             event.preventDefault();
-            //alert('editar' + time_input_desconto.value)
             modalEditar.classList.add('d-flex')
             modalEditar.classList.remove('d-none')
 
+            inputsEdit.forEach((input) => {
+                input.addEventListener('change', () => {
 
-            const hora1 = time_input_inicio_edit.value;
-            const hora2 = time_input_termino_edit.value;
-            const hora3 = time_input_desconto_edit.value;
-    
-            const [hour1, minute1] = hora1.split(":").map(Number);
-            const [hour2, minute2] = hora2.split(":").map(Number);
-            const [hour3, minute3] = hora3.split(":").map(Number);
-    
-            if (hour2 < hour1) {
-    
-                button_editar.classList.add('d-none')
-                button_editar.classList.remove('d-flex')
-    
-            } else {
-    
+                    btnSave2.classList.remove('d-none');
+                    btnSave2.classList.add('d-flex');
+                });
+            });
+
+            btnSave2.addEventListener('click', (event) => {
+                event.preventDefault();
+                const hora1 = time_input_inicio_edit.value;
+                const hora2 = time_input_termino_edit.value;
+                const hora3 = time_input_desconto_edit.value;
+
                 const [hour1, minute1] = hora1.split(":").map(Number);
                 const [hour2, minute2] = hora2.split(":").map(Number);
                 const [hour3, minute3] = hora3.split(":").map(Number);
-    
-               
-                let somaHours = hour2 - hour1;
-                let somaMinutes = minute2 - minute1;
-    
-                
-                if (somaMinutes < 0) {
-                    somaHours--;
-                    somaMinutes += 60; 
+
+                if (hour2 < hour1) {
+
+                    button_editar.classList.add('d-none')
+                    button_editar.classList.remove('d-flex')
+
+                } else {
+
+                    const [hour1, minute1] = hora1.split(":").map(Number);
+                    const [hour2, minute2] = hora2.split(":").map(Number);
+                    const [hour3, minute3] = hora3.split(":").map(Number);
+
+
+                    let somaHours = hour2 - hour1;
+                    let somaMinutes = minute2 - minute1;
+
+
+                    if (somaMinutes < 0) {
+                        somaHours--;
+                        somaMinutes += 60;
+                    }
+
+
+                    let somaHoursLiquid = somaHours - hour3;
+                    let somaMinutesLiquid = somaMinutes - minute3;
+
+
+                    if (somaMinutesLiquid < 0) {
+                        somaHoursLiquid--;
+                        somaMinutesLiquid += 60;
+                    }
+
+
+                    if (somaHoursLiquid < 0) {
+                        somaHoursLiquid += 24;
+                    }
+
+
+                    const valorTotal = `${somaHours}:${somaMinutes.toString().padStart(2, "0")}`;
+                    const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid.toString().padStart(2, "0")}`;
+
+                    // Exibindo os resultados
+
+                    liquidoCalc.textContent = "Líquido: " + valorTotalLiquid
+        
+                    totalCalc.textContent = "Total Geral: " + valorTotal
                 }
-    
-                
-                let somaHoursLiquid = somaHours - hour3;
-                let somaMinutesLiquid = somaMinutes - minute3;
-    
-                
-                if (somaMinutesLiquid < 0) {
-                    somaHoursLiquid--; 
-                    somaMinutesLiquid += 60; 
-                }
-    
-                
-                if (somaHoursLiquid < 0) {
-                    somaHoursLiquid += 24; 
-                }
-    
-                
-                const valorTotal = `${somaHours}:${somaMinutes.toString().padStart(2, "0")}`;
-                const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid.toString().padStart(2, "0")}`;
-    
-                // Exibindo os resultados
-                console.log("Valor Total:", valorTotal);
-                console.log("Valor Total Liquid:", valorTotalLiquid);
-            }    
-             
+            })
+
+
             const horarioUpdate = {
                 "id": `${tempo.id}`,
                 "data_projeto": `${date_input.value}`,
@@ -266,10 +279,14 @@ const fetchAPI = async () => {
                 "id_tarefa": 3,
                 "id_aluno": 1
             }
-           // console.log(horarioUpdate);
+            // console.log(horarioUpdate);
             //updateHorario(horario)
-    
+
         })
+
+
+
+
 
         btnBack.addEventListener('click', (event) => {
             event.preventDefault();
@@ -509,37 +526,37 @@ const criarDadosHorario = () => {
 
         } else {
 
-            
+
             const [hour1, minute1] = hora1.split(":").map(Number);
             const [hour2, minute2] = hora2.split(":").map(Number);
             const [hour3, minute3] = hora3.split(":").map(Number);
 
-           
+
             let somaHours = hour2 - hour1;
             let somaMinutes = minute2 - minute1;
 
-            
+
             if (somaMinutes < 0) {
                 somaHours--;
-                somaMinutes += 60; 
+                somaMinutes += 60;
             }
 
-            
+
             let somaHoursLiquid = somaHours - hour3;
             let somaMinutesLiquid = somaMinutes - minute3;
 
-            
+
             if (somaMinutesLiquid < 0) {
-                somaHoursLiquid--; 
-                somaMinutesLiquid += 60; 
+                somaHoursLiquid--;
+                somaMinutesLiquid += 60;
             }
 
-            
+
             if (somaHoursLiquid < 0) {
-                somaHoursLiquid += 24; 
+                somaHoursLiquid += 24;
             }
 
-            
+
             const valorTotal = `${somaHours}:${somaMinutes.toString().padStart(2, "0")}`;
             const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid.toString().padStart(2, "0")}`;
 
