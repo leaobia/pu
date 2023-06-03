@@ -2,6 +2,7 @@
 
 //import { criterioJSON } from './relatoriojson.js'
 import { pesquisarCriterios } from './apiCriterios.js'
+import { updateCriterio } from './apiCriterios.js'
 
 
 //const criterios = criterioJSON.criterios;
@@ -233,6 +234,14 @@ export const criterioForEach = async () => {
             event.preventDefault();
             modalEditar.classList.remove('d-flex')
             modalEditar.classList.add('d-none')
+        })
+
+        const updateMudancas = [opçoes, inputObtido]
+
+        updateMudancas.forEach((mudanca) => {
+          mudanca.addEventListener('change', function (){
+            console.log(mudanca);
+          })
         })
 
         opçoes.addEventListener('change', function () {
