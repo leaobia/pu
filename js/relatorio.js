@@ -27,9 +27,9 @@ export const criterioForEach = async () => {
         const descricaoCriterio = document.createElement('i');
         descricaoCriterio.classList.add('descricaoCriterio');
         if (criterio.descricao_criterio && criterio.descricao_criterio !== "") {
-            descricaoCriterio.textContent = criterio.descricao_criterio.slice(0, 15) + "...";
+            descricaoCriterio.textContent = criterio.descricao_criterio.slice(0, 9) + "...";
         } else {
-            descricaoCriterio.textContent = 'Este critério não possui uma descrição. Caso possua alguma dúvida, solicite ajuda ao seu professor'.slice(0, 15) + "...";
+            descricaoCriterio.textContent = 'Este critério não possui uma descrição. Caso possua alguma dúvida, solicite ajuda ao seu professor'.slice(0, 9) + "...";
         }
 
 
