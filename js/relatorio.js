@@ -239,57 +239,24 @@ export const criterioForEach = async () => {
         const updateMudancas = [opçoes, inputObtido]
 
         updateMudancas.forEach((mudanca) => {
-          mudanca.addEventListener('change', function (){
-            console.log(mudanca);
-          })
-        })
+            mudanca.addEventListener('change', function () {
+              if (mudanca.tagName === 'INPUT') {
 
-        opçoes.addEventListener('change', function () {
-
-            const valorSelecionado = opçoes.value;
-            if (valorSelecionado != 'nada') {
-                btnSave2.classList.remove('d-none');
-                btnSave2.classList.add('d-flex');
-
-                btnSave2.addEventListener('click', (event) => {
-                    event.preventDefault();
-
-                    avaliacao.classList.remove('fa-sharp')
-                    avaliacao.classList.remove('fa-solid')
-                    avaliacao.classList.remove('fa-xmark')
-                    avaliacao.textContent = valorSelecionado
-                })
-            }
+                console.log('Mudança em um input:', mudanca);
+              } else if (mudanca.tagName === 'SELECT') {
+               
+                console.log('Mudança em um select:', mudanca);
+              } else {
+                
+                console.log('Mudança em outro tipo de elemento:', mudanca);
+              }
+              btnSave2.classList.add('d-flex')
+              btnSave2.classList.remove('d-none')
+            });
+          });
+          
 
 
-
-        });
-
-
-        inputObtido.addEventListener('change', () => {
-
-            btnSave2.classList.remove('d-none');
-            btnSave2.classList.add('d-flex');
-
-            btnSave2.addEventListener('click', (event) => {
-                event.preventDefault();
-
-
-                const newValue = inputObtido.value;
-
-                obtido.classList.remove('fa-sharp')
-                obtido.classList.remove('fa-solid')
-                obtido.classList.remove('fa-xmark')
-
-                obtido.textContent = newValue;
-                const changeEvent = new Event('change');
-                obtido.dispatchEvent(changeEvent);
-
-
-                modalEditar.classList.remove('d-flex')
-                modalEditar.classList.add('d-none')
-            })
-        });
 
     });
 }
