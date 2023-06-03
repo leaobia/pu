@@ -267,12 +267,31 @@ export const criterioForEach = async () => {
             if(criterio.margem_erro.resultados != null){
                 console.log('não é nulo o json resultados');
                 if(criterio.margem_erro.resultados.length == 1){
+
                     console.log('apenas 1');
                 }else{
-                    console.log('apenas 3');
+                   
+                    console.log('apenas 2');
                 }
             }else{
+                const criterioAPI = {
+                    "id": idCriterio,
+                    "descricao_criterio": `${criterio.descricao_criterio}`,
+                    "nota_valida_criterio": `${novoValor2}`,
+                    "resultado_desejado_criterio": `${criterio.resultado_desejado_criterio}`,
+                    "tipo_critico_criterio": `${criterio.descricao_criterio}`,
+                    "id_tarefa_criterio": `${criterio.tipo_critico_criterio}`,
+                    "nome_tarefa": `${criterio.nome_tarefa}`,
+                    "numero_tarefa": `${criterio.numero_tarefa}`,
+                    "foto_peca_tarefa": `${criterio.foto_peca_tarefa}`,
+                    "margem_erro":{
+                        "status": `${criterio.margem_erro.status}`,
+                        "message": `${criterio.margem_erro.status}`,
+                    }
+                }
                 console.log('é nulo');
+                console.log(criterioAPI);
+                updateCriterio(criterioAPI)
             }
 
            // const atualizacao = {
