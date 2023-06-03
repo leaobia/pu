@@ -180,6 +180,16 @@ const fetchAPI = async () => {
         const totalCalc = document.createElement('i')
         totalCalc.textContent = "Total Geral:"
 
+        const desejaEnviar = document.createElement('div')
+        desejaEnviar.classList.add('desejaEnviar')
+        desejaEnviar.classList.add('d-none')
+
+        const desejaEnviarSIM = document.createElement('button')
+        desejaEnviarSIM.textContent = "Sim"
+
+        const desejaEnviarNao = document.createElement('button')
+        desejaEnviarNao.textContent = "Não"
+
         // event listener botões 
 
         // delet 
@@ -208,6 +218,9 @@ const fetchAPI = async () => {
                     btnSave2.classList.add('d-flex');
                 });
             });
+
+            let valorTotalLiquid;
+            let valorTotal;
 
             btnSave2.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -256,33 +269,41 @@ const fetchAPI = async () => {
                     }
 
 
-                    const valorTotal = `${somaHours}:${somaMinutes.toString().padStart(2, "0")}`;
-                    const valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid.toString().padStart(2, "0")}`;
+                    valorTotal = `${somaHours}:${somaMinutes.toString().padStart(2, "0")}`;
+                    valorTotalLiquid = `${somaHoursLiquid}:${somaMinutesLiquid.toString().padStart(2, "0")}`;
 
                     // Exibindo os resultados
 
                     liquidoCalc.textContent = "Líquido: " + valorTotalLiquid
-        
+
                     totalCalc.textContent = "Total Geral: " + valorTotal
+
+                    desejaEnviar.classList.add('d-flex')
+                    desejaEnviar.classList.remove('d-none')
                 }
             })
 
+            desejaEnviarSIM.addEventListener('click', (event) => {
+                console.log(valorTotal, valorTotalLiquid);
+                event.preventDefault();
+                const horarioUpdate = {
+                    "id": `${tempo.id}`,
+                    "data_projeto": `${date_input.value}`,
+                    "duracao_inicio": `${time_input_inicio_edit.value.substring(0, 2) + ':' + time_input_inicio_edit.value.substring(3, 5)}`,
+                    "duracao_termino": `${time_input_termino_edit.value.substring(0, 2) + ':' + time_input_termino_edit.value.substring(3, 5)}`,
+                    "desconto": `${time_input_desconto_edit.value.substring(0, 2) + ':' + time_input_desconto_edit.value.substring(3, 5)}`,
+                    "liquido": `${valorTotalLiquid}`,
+                    "total_geral": `${valorTotal}`,
+                    "id_tarefa": 3,
+                    "id_aluno": 1
+                }
+                // console.log(horarioUpdate);
+                updateHorario(horarioUpdate)
 
-            const horarioUpdate = {
-                "id": `${tempo.id}`,
-                "data_projeto": `${date_input.value}`,
-                "duracao_inicio": `${time_input_inicio_edit.value.substring(0, 2) + ':' + time_input_inicio_edit.value.substring(3, 5)}`,
-                "duracao_termino": `${time_input_termino_edit.value.substring(0, 2) + ':' + time_input_termino_edit.value.substring(3, 5)}`,
-                "desconto": `${time_input_desconto_edit.value.substring(0, 2) + ':' + time_input_desconto_edit.value.substring(3, 5)}`,
-                //"liquido": `${}`,
-                //"total_geral": `${}`,
-                "id_tarefa": 3,
-                "id_aluno": 1
-            }
-            // console.log(horarioUpdate);
-            //updateHorario(horario)
-
+            })
         })
+
+
 
 
 
@@ -314,10 +335,11 @@ const fetchAPI = async () => {
 
         dados_botoes.append(button_excluir, button_editar)
 
-        formEditar.append(dataDivEdit, time_inicioDivEdit, time_terminoDivEdit, time_descontoDivEdit, liquidoCalc, totalCalc)
+        formEditar.append(dataDivEdit, time_inicioDivEdit, time_terminoDivEdit, time_descontoDivEdit, liquidoCalc, totalCalc, desejaEnviar)
         dataDivEdit.append(iDivDate, date_input_edit)
         time_inicioDivEdit.append(iDivTimeInicio, time_input_inicio_edit)
         time_terminoDivEdit.append(iDivTimeTermino, time_input_termino_edit)
+        desejaEnviar.append(desejaEnviarSIM, desejaEnviarNao)
         time_descontoDivEdit.append(iDivTimeDesconto, time_input_desconto_edit)
 
     })
