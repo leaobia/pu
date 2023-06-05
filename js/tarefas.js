@@ -11,12 +11,13 @@ export const criarDadosTarefa = async ()  => {
     tarefasDados.forEach((tarefa) => {
 
         const aLinkCard = document.createElement('a')
+        aLinkCard.classList.add('card')
         aLinkCard.href = '/horario'
         aLinkCard.id = 'aLinkCard'
+
         aLinkCard.addEventListener('click', () => {
-        window.localStorage.setItem('path', aLinkCard.href)
-        window.history.pushState({}, "", window.localStorage.getItem('path'))
-        //route()
+           window.localStorage.setItem('teste', aLinkCard.href)
+           route()
         })
 
         const card = document.createElement('div')
@@ -28,9 +29,7 @@ export const criarDadosTarefa = async ()  => {
         const nomeTarefa = document.createElement('p')
         nomeTarefa.textContent = tarefa.nome
 
-        card.append(imgPeca,nomeTarefa)
-
-        aLinkCard.append(card)
+        aLinkCard.append(imgPeca,nomeTarefa)
        
         containerTarefa.append(aLinkCard)
         
