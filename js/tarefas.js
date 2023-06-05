@@ -22,13 +22,16 @@ export const criarDadosTarefa = async ()  => {
         const card = document.createElement('div')
         card.classList.add('card')
 
+        const spanTipoTarefa = document.createElement('span')
+        spanTipoTarefa.textContent = 'Tipo: ' +tarefa.nome_tipo_tarefa
+
         const imgPeca = document.createElement('img')
         imgPeca.src = tarefa.foto_peca
 
         const nomeTarefa = document.createElement('p')
-        nomeTarefa.textContent = tarefa.nome
+        nomeTarefa.textContent =  tarefa.nome
 
-        card.append(aLinkCard,imgPeca,nomeTarefa)
+        card.append(aLinkCard,imgPeca,spanTipoTarefa,nomeTarefa)
        
 
         containerTarefa.append(card)
