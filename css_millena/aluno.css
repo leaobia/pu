@@ -578,7 +578,13 @@ label {
     width: auto;
     gap: 2vw;
 }
+.linkHorario{
+    position: absolute;
+    margin-right: 4vw;
+    right: 0;
+    font-size: clamp(1.3125rem, -0.0569rem + 2.95vw, 1.9rem);
 
+}
 .desejaEnviarButtons button {
     padding: 0px 20px 0px 20px;
     cursor: pointer;
