@@ -28,11 +28,10 @@ const route = async() => {
     window.event.preventDefault()
 
     window.history.pushState({}, "", window.event.target.href)
-    console.log('localStorage: '+window.localStorage.getItem('teste'))
+  
     console.log('target.href: '+window.event.target.href)
 
     const path = window.location.pathname
-    console.log('pathname: '+window.location.pathname);
 
     const response = await fetch(routes[path].html)
     

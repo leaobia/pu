@@ -109,6 +109,8 @@ nav {
     align-items: center;
     gap: 25px;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .card img {
@@ -490,8 +492,20 @@ label {
     align-items: center;
     width: 30vw;
 }
+
+.cardLink{
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    z-index: 1;
+    background-color: transparent;
+}
 .card p{
     text-align: center;
+    z-index: 0;
+}
+.card img{
+    z-index: 0;
 }
 .contentShowDesc {
     display: flex;
