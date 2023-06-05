@@ -2,6 +2,7 @@
 
 import {eventoBotãoAdicionar} from'./adicionar.js'
 import {criterioForEach} from'./relatorio.js'
+import {criarDadosTarefa} from'./tarefas.js'
 
 const routes = {
     '/materia' : {
@@ -44,8 +45,11 @@ const route = async() => {
     if(window.location.pathname == '/relatorio'){
         criterioForEach()
     }
+    if(window.location.pathname == '/areaAluno'){
+        criarDadosTarefa()
+    
+    }
 }
 
 window.route = route
 
-//getValuesOfInputTimeDate(),

@@ -490,7 +490,9 @@ label {
     align-items: center;
     width: 30vw;
 }
-
+.card p{
+    text-align: center;
+}
 .contentShowDesc {
     display: flex;
     flex-direction: column;
