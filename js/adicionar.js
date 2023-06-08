@@ -647,7 +647,7 @@ const criarDadosHorario = () => {
     })
 }
 
-export const eventoBotãoAdicionar = () => {
+ const eventoBotãoAdicionar = () => {
 
     const botao_adc = document.getElementById('adicionar')
 
@@ -664,3 +664,6 @@ export const eventoBotãoAdicionar = () => {
 
     fetchAPI()
 }
+
+
+eventoBotãoAdicionar()
